@@ -1,0 +1,238 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>무제 타이틀 입니다. </title>
+  <meta name="kewords" content="">
+  <meta name="description" content="">
+  <link rel="stylesheet" type="text/css" href="text.css">
+  <style type="text/css">
+    li:nth-child(2n-1){
+      background-color: yellow;
+    }
+    li:first-child{
+      background-color: red;
+    }
+    li:last-child{
+      background-color: blue;
+    }
+    li:nth-child(2n){
+      background-color: green;
+    }
+    ul{
+      overflow: :hidden;
+    }
+    /*list스타일을 적용하지마라 */
+    li{
+      list-style: none;
+    }
+    /* 떨어지는 형태가 아닌 인라인 블록 형태로 만들거야*/
+    li{
+      float:left;
+      padding:15px;
+    }
+    li:hover{
+      background-color: white;
+    }
+    a:link { color: red; text-decoration: none;}
+    a:visited { color: black; text-decoration: none;}
+    a:hover { color: blue; text-decoration: underline;}
+
+    td{width: 50px;}
+    table{
+      text-align: center;
+    }
+    table,th,tr,td{
+      border: 1px solid black;}
+
+  .video-container { margin: 0;padding-bottom: 75%; max-width: 100%; height: 0; position: relative;overflow: hidden;} 
+  .video-container iframe, 
+  .video-container object, 
+  .video-container embed { margin: 0;padding: 0; width: 100%; height: 95%;position: absolute; top: 0;left: 0; }
+  input:focus{
+    border:10px solid red;
+  }
+
+  button:disabled{
+    border:1px solid red;
+  }
+
+  </style>
+  <script type="text/javascript">
+    console.log('정 광 수 '); 
+  </script>
+  <!-- 합쳐지고 최소화된 최신 CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+  <!-- 부가적인 테마 -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+  <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>  
+</head>
+<div class="container">
+<body>
+<h1>오늘 점심은 뭘까????</h1>
+<h2>오늘 점심은 뭘까????</h2>
+<h3>오늘 점심은 뭘까????</h3>
+<h4>오늘 점심은 뭘까????</h4>
+<h5>오늘 점심은 뭘까????</h5>
+<h6>오늘 점심은 뭘까????</h6>
+<p>GSITM</p>
+&lt정광수&gt
+<hr>
+<a href="http://www.naver.com" target="_blank">네이버 가즈아</a>
+<a href="test2.html" target="_self">test2페이지로 가자</a>
+<a href="#mid">중간으로 이동 </a>
+<a href="#end">맨 아래로 이동 </a>
+<!--메일 보내기용  -->
+<a href="mailto:kjjks12@naver.com">메일쓰기</a>
+  <ul>
+    <li>첫번째</li>
+    <li>두번째</li>
+    <li>세번째</li>
+    <li>네번째</li>
+    <li>다섯번째</li>
+    <li>여섯번째</li>
+    <li>일곱번쨰</li>
+  </ul>
+  <br/><br/>
+
+<table>
+  <caption>ㅎㅎㅎㅎ</caption>
+  <thead>
+    <tr>
+      <th>이름</th>
+      <th>나이</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td colspan="2">27</td>
+    </tr>
+  </tbody>
+  <tfoot></tfoot>
+</table>
+
+<br><br><br><br><br>
+<div id="table_test">
+<table>
+  <caption>테스트 가자</caption>
+  <tr>
+    <td>1</td>
+    <td>2</td>
+    <td>3</td>
+    <td>4</td>
+    <td rowspan="5">5</td>
+    <td>6</td>
+    <td>7</td>
+    <td>8</td>
+  </tr>
+  <tr>
+    <td>9</td>
+    <td colspan="2" rowspan="2">10</td>
+    <td>11</td>
+    <td>12</td>
+    <td colspan="2">13</td>
+  </tr>
+  <tr>
+    <td>14</td>
+    <td>15</td>
+    <td colspan="2">16</td>
+    <td>17</td>
+  </tr>
+  <tr>
+    <td>18</td>
+    <td>19</td>
+    <td>20</td>
+    <td>21</td>
+    <td>22</td>
+    <td>23</td>
+    <td>24</td>
+  </tr>
+  <tr>
+    <td>25</td>
+    <td colspan="3" rowspan="2">26</td>
+    <td rowspan="3">27</td>
+    <td>28</td>
+    <td>29</td>
+  </tr>
+  <tr>
+    <td>30</td>
+    <td>31</td>
+    <td>32</td>
+    <td>33</td>
+  </tr>
+  <tr>
+    <td>34</td>
+    <td>35</td>
+    <td>36</td>
+    <td>37</td>
+    <td>38</td>
+    <td>39</td>
+    <td>40</td>
+  </tr>
+  <tr></tr>
+</table>
+</div>
+<br><br>
+<img  src="aa.jpg" alt="없을때 나오는 글" width="500px" height="300px"/>
+<h2>음악</h2>
+<audio src="sound.mp3" type="audio/mp3" autoplay="" controls="">노래 시작 </audio>
+<hr>
+<h2>동영상 </h2>
+<video  controls poster="aa.jpg" src="video.mp4" controls="">동영상 시작 </video>
+<hr>
+
+<div class="video-container">
+  <object type="text/html" width="300" height="315" data="https://www.youtube.com/embed/qFmXLGheyqs" allowFullScreen></object>
+</div>
+<hr>
+  <form name="user_enroll" id="user_enroll" action="test.html" method="post">
+    <input type="text" name="id" id="id "/>
+    <br>
+    <input type="hidden" name="hidden" id="hidden" value="정광수"/>
+    <br>
+    <input type="password" name="passowrd" id="password"/>
+    <input type="submit" value="저장"/>
+    <input type="reset" value="초기화"/> 
+  </form>
+<hr>
+  <form>
+      <fieldset>
+        <
+      </fieldset>
+
+    이름 : <input type="text" name="text" value="text"/><br/>
+    <label for="name">이름(라벨) :</label>  <input type="text" id="name" name="text" value="text"/><br/>
+    <input type="password" name="passowrd" value="password"/><br/>
+    <input type="file" name="file" value="file"/><br/>
+    <input type="checkbox" name="checkbox" value="checkbox" id="chk1"/><br/>
+    <input type="checkbox" name="checkbox" value="checkbox" id="chk2"/><br/>    
+    <input type="radio" name="radio" value="radio" /><br/>
+    <!--보이지 않는 입력 방식 -->
+    <input type="hidden" name="hidden" id="hidden" value="정광수"/><br/>
+    <select name="select" id="select" multiple="multiple">
+      <option value="0001">대졸</option>
+      <option value="0002">초대졸</option>
+      <option value="0003">고졸</option>
+    </select>
+    <br/>
+    <!-- Button -->
+    <input type="button" class="btn btn-primary" value="button"/>&nbsp
+    <input type="submit" class="btn btn-success" value="전송하기 "/>
+
+
+  </form>
+
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<span id="mid">중간</span>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<span id="end">끝 부분</span>
+</div>
+</body>
+</html>
