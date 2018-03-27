@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <title>게시판 상세보기</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="../css/common.css">
+    <style type="text/css">
+    .td_background {
+        width: 200px;
+        background-color: #a64dff;
+        text-align: center;
+        font-weight: bold;
+    }
+
+    tfoot td {
+        height: 200px;
+    }
+    tfoot>tr>td {
+        text-align: left;
+    }
+
+    tbody>tr
+    </style>
+</head>
+
+<body>
+    <div class="list-box-title">
+        <span>
+            <i class="icon icon-accessibility"></i>
+            게시판 상세페이지
+        </span>
+    </div>
+    <table>
+        <thead></thead>
+        <tbody>
+            <tr>
+                <td class="td_background">글번호</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td class="td_background">글쓴이</td>
+                <td>kjjks2</td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="2">
+                    안국정으로 가는거 어때요????
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+
+    <!--[S] 댓글 테이블 -->
+    <table class="table table-condensed">
+        <thead>
+            <tr>
+                <td>
+                    <span>모두의마블</span>
+                    <span>
+                         <button type="button" id="modify" class="btn btn-default">수정</button>
+                        <button type="button" id="delete" class="btn btn-default">삭제</button>
+                    </span>
+                    <div>
+                        싫어요!!
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>누구냐넌</span>
+                    <span>
+                         <button type="button" id="modify" class="btn btn-default">수정</button>
+                        <button type="button" id="delete" class="btn btn-default">삭제</button>
+                    </span>
+                    <div>
+                        돼지갈비 먹으러 가요!!
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>머히떠</span>
+                    <span>
+                         <button type="button" id="modify" class="btn btn-default">수정</button>
+                        <button type="button" id="delete" class="btn btn-default">삭제</button>
+                    </span>
+                    <div>
+                        안국정에서 낚지볶음 ㄱㄱ?
+                    </div>
+                </td>
+            </tr>
+        </thead>
+    </table>
+    <!--[E] 댓글 테이블 -->
+</body>
+
+</html>

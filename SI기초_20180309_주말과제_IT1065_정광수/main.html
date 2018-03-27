@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <title>메인페이지</title>
+    <meta charset="utf-8">
+    <script src="https://unpkg.com/sweetalert2@7.16.0/dist/sweetalert2.all.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/common.css">
+    <link rel="stylesheet" type="text/css" href="css/menu.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <script type="text/javascript" src="libs/jquery-1.11.0.min.js"></script>
+    <style>
+
+    </style>
+    <script>
+    $(document).ready(function() {
+        var sessionId = null;
+        sessionCheckShowMenu();
+
+        //세션 유무 체크 :유무에 따라 탑메뉴 보여지고 가려짐
+        function sessionCheckShowMenu() {
+            sessionId = sessionStorage.getItem('id');
+            //sessionId = "adsjflkj";
+            if (sessionId != null) {
+                jQuery('#top-span-userInfo').css("display", "block");
+                jQuery('#top-span-logout').css("display", "block");
+                jQuery('#top-span-createUser').css("display", "none");
+                jQuery('#top-span-login').css("display", "none");
+                jQuery('.div_login_info').css("display", "block");
+                $(".div_login_info > a").text(sessionId);
+            } else {
+                jQuery('#top-span-userInfo').css("display", "none");
+                jQuery('#top-span-logout').css("display", "none");
+                jQuery('#top-span-createUser').css("display", "block");
+                jQuery('#top-span-login').css("display", "block");
+                jQuery('.div_login_info').css("display", "none");
+
+            }
+        }
+
+        //회원가입 모달 셋팅
+        var modalLayer = $("#modalLayer");
+        var modalLink = $(".modalLink");
+        var modalCont = $(".modalContent");
+        var marginLeft = modalCont.outerWidth() / 2;
+        var marginTop = modalCont.outerHeight() / 2;
+
+        //회원가입 모달 동작
+        modalLink.click(function() {
+            modalLayer.fadeIn("slow");
+            modalCont.css({ "margin-top": -marginTop, "margin-left": -marginLeft });
+            $(this).blur();
+            $(".modalContent > a").focus();
+            return false;
+        });
+
+        //회원가입 버튼 
+        $('#btnSubmit').click(function(event) {
+            $id = $("#txtId");
+            $pwd = $("#txtPwd");
+            $pwdRe = $("#txtPwdRe");
+            $phone = $("#txtPhone");
+            $email = $("#txtEmail");
+            $man = $("#man");
+            $woman = $("#woman");
+            if (typeCheck($id, $pwd, $pwdRe, $phone, $email, $man, $woman)) {
+                swal({
+                    position: 'center',
+                    background: '#fff ',
+                    title: "회원가입 완료 ",
+                    text: "즐거운 사이트 이용 되세용",
+                    type: "success",
+                    showConfirmButton: false,
+                    timer: 1500,
+                });
+
+                setTimeout(function() {
+                    $("#btnClose").trigger('click');
+                }, 1500);
+                sessionStorage.setItem('id', $id.val());
+                sessionStorage.setItem('pwd', $pwd.val());
+                sessionStorage.setItem('phone', $phone.val());
+                sessionStorage.setItem('email', $email.val());
+                if ($man.is(":checked")) {
+                    sessionStorage.setItem('sex', 1);
+                }
+                if ($woman.is(":checked")) {
+                    sessionStorage.setItem('sex', 2);
+                }
+                //sessionCheckShowMenu();
+                $id.val('');
+                $pwd.val('');
+                $pwdRe.val('');
+                $phone.val('');
+                $email.val('');
+                $man.val('');
+                $woman.val('');
+            }
+        });
+
+        $("#btnClose").on('click', function() {
+            modalLayer.fadeOut("slow");
+            modalLink.focus();
+        });
+
+        function typeCheck($id, $pwd, $pwdRe, $phone, $email, $man, $woman) {
+
+            if ($id.val() == '') {
+                $("#id_alert_span").text("id를 입력해주세요");
+                $($id).focus();
+                return false;
+            } else if ($.trim($id.val()).length < 4) {
+                $("#id_alert_span").text("id는 4글자 이상이어야 합니다");
+                $($id).focus();
+                return false;
+            } else {
+                $("#id_alert_span").text("");
+            }
+            if (!$woman.is(":checked") && !$man.is(":checked")) {
+                $("#gender_alert_span").text("성별을 체크해주세요");
+                return false;
+            } else {
+                $("#gender_alert_span").text("");
+            }
+
+            if ($pwd.val() == '') {
+                $("#pwd_alert_span").text("암호를 입력해주세요");
+                $($pwd).focus();
+                return false;
+            } else if ($pwd.val().length < 5) {
+                $("#pwd_alert_span").text("암호는 5글자 이상 이어야 합니다");
+                $($pwd).focus();
+                return false;
+            } else {
+                $("#pwd_alert_span").text("");
+            }
+
+
+            if ($pwdRe.val() == '') {
+                $("#pwdRe_alert_span").text("암호확인 입력해주세요");
+                $($pwdRe).focus();
+                return false;
+            } else {
+                $("#pwdRe_alert_span").text("");
+            }
+
+            if ($pwd.val() != $pwdRe.val()) {
+                $("#pwdRe_alert_span").text("암호 값이 일치하지 않습니다.");
+                $($pwdRe).focus();
+                return false;
+            } else {
+                $("#pwdRe_alert_span").text("");
+            }
+
+            if ($phone.val() == '') {
+                $("#phone_alert_span").text("전화번호를 입력해주세요");
+                $($phone).focus();
+                return false;
+            } else if (!phoneVerify($phone.val())) {
+                $("#phone_alert_span").text("형식이 유효하지 않습니다 ex)010-1234-5678");
+                $($phone).focus();
+                return false;
+            } else {
+                $("#phone_alert_span").text("");
+            }
+            if ($email.val() == '') {
+                $("#email_alert_span").text("이메일을 입력해주세요");
+                $($email).focus();
+                return false;
+            } else if (!emailVerify($email.val())) {
+                $("#email_alert_span").text("이메일 형식이 유효하지 않습니다");
+                $($email).focus();
+                return false;
+            } else {
+                $("#email_alert_span").text("");
+            }
+            return true;
+        }
+
+        function phoneVerify(phone) {
+            var regExp = /^\d{3}-\d{3,4}-\d{4}$/;
+            if (regExp.test(phone) === false) {
+                return false;
+            } else {
+                return true;
+            }
+        }
+
+        function emailVerify(email) {
+            var regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+            if (regExp.test(email) === false) {
+                return false;
+            } else {
+                return true;
+            }
+        }
+
+        //로그인 모달
+        var modalLayer2 = $("#modalLayer2");
+        var modalLink2 = $(".modalLink2");
+        var modalCont2 = $(".modalContent2");
+        var marginLeft2 = modalCont2.outerWidth() / 2;
+        var marginTop2 = modalCont2.outerHeight() / 2;
+
+        modalLink2.click(function() {
+            modalLayer2.fadeIn("slow");
+            modalCont2.css({ "margin-top": -marginTop2, "margin-left": -marginLeft2 });
+            $(this).blur();
+            $(".modalContent2 > a").focus();
+            return false;
+        });
+
+        //로그인에서 로그인 버튼
+        $('#btn_login').click(function(event) {
+            var $loginID = $("#id");
+            var $loginPwd = $("#pwd");
+            if (typeCheck2($loginID, $loginPwd)) {
+                if (loginProc($loginID, $loginPwd)) {
+
+                    swal({
+                        title: $("#id").val() + "님 반갑습니다.",
+                        text: "즐거운 사이트 이용 되세용",
+                        type: "success",
+                        showConfirmButton: false,
+                        timer: 1500,
+                    });
+                    setTimeout(function() {
+                        $("#modal-btn-close").trigger('click');
+                    }, 100);
+
+                    sessionId = $loginID.val();
+                    sessionCheckShowMenu();
+
+                } else {
+                    swal({
+                        title: "없는 아이디 입니다 ",
+                        text: "ID PWD를 확인해주세요",
+                        type: "error",
+                        showConfirmButton: false,
+                        timer: 1500,
+                    });
+                    $loginID.val('');
+                    $loginPwd.val('');
+                }
+            } //end if-block
+        }); //btn-login clickEvent
+
+        function loginProc($loginID, $loginPwd) {
+            var getSessionId = sessionStorage.getItem('id');
+            var getSessionPwd = sessionStorage.getItem('pwd');
+            if ($loginID.val() == getSessionId) {
+                return true;
+            }
+            if ($loginPwd.val() == getSessionPwd) {
+                return true;
+            }
+
+            return false;
+        }
+
+        function typeCheck2($loginID, $loginPwd) {
+
+            if ($loginID.val() == '') {
+                $("#login_id_alert_span").text("id를 입력해주세요");
+                $($loginID).focus();
+                return false;
+            } else {
+                $("#login_id_alert_span").text("");
+            }
+            if ($loginPwd.val() == '') {
+                $("#login_pwd_alert_span").text("암호를 입력해주세요");
+                $($loginPwd).focus();
+                return false;
+            }
+            return true;
+        }
+
+        $("#modal-btn-close").on('click', function() {
+            modalLayer2.fadeOut("slow");
+            modalLink2.focus();
+        })
+
+        $("#enrollRecipeA").click(function() {
+            return sessionCheckAlert();
+        })
+        $("#enrollBoardA").click(function() {
+            return sessionCheckAlert();
+        })
+
+        $("#top-span-logout").click(function(event) {
+            /* Act on the event */
+            //alert();
+            sessionStorage.removeItem('id');
+            sessionCheckShowMenu();
+        });
+
+        function sessionCheckAlert() {
+            if (sessionId == null) {
+                swal({
+                    position: 'center',
+                    background: '#fff ',
+                    title: "로그인후 이용해주세요",
+                    type: "error",
+                    showConfirmButton: false,
+                    timer: 1500,
+                });
+                return false;
+            }
+            return true;
+        }
+
+
+    }); //jQuery  끝
+    </script>
+</head>
+
+<body>
+    <!--[S] header-->
+    <header class=sticky>
+        <div class="div-login-logout">
+            <div class="login-logout-margin-div">
+                <a href="#">
+                <span class="top-span" id="top-span-logout"> <i class="icon-edit-user icon-accessibility "></i><span class="top-meue-text">로그아웃</span></span>
+                 </a>
+                <a href="user/나의회원정보.html" target="iframe ">
+                <span class="top-span" id="top-span-userInfo"> <i class="icon-edit-user icon-accessibility "></i><span class="top-meue-text">회원정보</span></span>
+                 </a>
+                <a href="#modalLayer" class="modalLink">
+                <span class="top-span" id="top-span-createUser" ><i class="icon-user icon-accessibility"></i><span class="top-meue-text">회원가입</span></span>
+                </a>
+                <a href="#modalLayer2" class="modalLink2">
+                <span class="top-span" id="top-span-login"> <i class="icon-login icon-accessibility"></i><span class="top-meue-text">로그인</span></span>
+            </a>
+            </div>
+        </div>
+        <!--[S]img div-->
+        <div class="div_out_logo">
+            <div class="div_logo">
+                <a href="main.html">
+                <img id="logo_img" src="logo.png">
+                </a>
+            </div>
+        </div>
+        <!--[E]img div-->
+        <div class="div_login_info">
+            <a href="user/나의회원정보.html" target="iframe "></a>님 안녕하세요..
+        </div>
+        <p style="clear:both"></p>
+        <p style="clear:both"></p>
+        <p style="clear:both"></p>
+        <hr>
+        <nav>
+            <div class="outer-menu">
+                <div class='menu'>
+                    <ul>
+                        <li>
+                            <a href='main_content/디폴트.html' target="iframe ">오늘의메뉴</a>
+                        </li>
+                        <li>
+                            <a href="recipe/메뉴등록하기.html " id="enrollRecipeA" target="iframe ">레시피 등록하기</a>
+                        </li>
+                        <li class='active sub'>
+                            <a href='#'>나라별 레시피</a>
+                            <ul>
+                                <li>
+                                    <a href='main_content/한식.html' target="iframe ">한식</a>
+                                </li>
+                                <li>
+                                    <a href='main_content/중식.html' target="iframe ">중식</a>
+                                </li>
+                                <li>
+                                    <a href='main_content/일식.html' target="iframe ">일식</a>
+                                </li>
+                                <li>
+                                    <a href='main_content/디저트.html' target="iframe ">디저트</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href='board/게시판보기.html' id="enrollBoardA" target="iframe ">게시판</a>
+                        </li>
+                        <li class='last'>
+                            <a href='오시는길.html' target="iframe ">찾아오는길</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <hr>
+    </header>
+    <!--[E] header-->
+    <!--[S] Container-->
+    <div class="container">
+        <!--[S]Article-->
+        <article class="article ">
+            <iframe src="main_content/디폴트.html " id="iFrame1 " class="iframe " name="iframe " scrolling="no "></iframe>
+        </article>
+        <!--[E]Article-->
+        <div id="modalLayer">
+            <div class="modalContent">
+                <div class="list-box-title">
+                    <span>
+                <i class="icon icon-accessibility"></i>
+                회원 가입
+            </span>
+                </div>
+                <table>
+                    <thead></thead>
+                    <tbody>
+                        <tr>
+                            <td>ID</td>
+                            <td>
+                                <input type="text" placeholder="id를 입력해 주세요 " id="txtId" />
+                                <input type="button" value="중복확인" />
+                                <span class="verify_span" id="id_alert_span"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>성별</td>
+                            <td>
+                                <input type="radio" id="man" name="gender" value="m" />
+                                <label for="man">남자</label>
+                                <input type="radio" id="woman" name="gender" value="w" />
+                                <label for="woman">여자</label>
+                                <span class="verify_span" id="gender_alert_span"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>암호</td>
+                            <td>
+                                <input type="password" placeholder="암호를 입력해 주세요 " id="txtPwd" />
+                                <span class="verify_span" id="pwd_alert_span"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>암호 확인</td>
+                            <td>
+                                <input type="password" placeholder="암호확인 입력해 주세요 " id="txtPwdRe" />
+                                <span class="verify_span" id="pwdRe_alert_span"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>전화번호</td>
+                            <td>
+                                <input type="text" placeholder="전화번호를 입력해주세요" id="txtPhone" />
+                                <span class="verify_span" id="phone_alert_span"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>이메일</td>
+                            <td>
+                                <input type="text" placeholder="이메일을 입력해 주세요" id="txtEmail" />
+                                <span class="verify_span" id="email_alert_span"></span>
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="2">
+                                <input type="button" class="btn-success" value="등록" id="btnSubmit" />
+                                <input type="button" class="btn-success" value="닫기" id="btnClose" />
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+        <div id="modalLayer2">
+            <div class="modalContent2">
+                <input type="button" class="btn-success" value="x" id='modal-btn-close' />
+                <div class="list-box-title">
+                    <span>
+                <i class="icon icon-accessibility"></i>
+                로그인
+            </span>
+                </div>
+                <table>
+                    <colgroup>
+                        <col class="first_cell_">
+                    </colgroup>
+                    <thead></thead>
+                    <tbody>
+                        <tr>
+                            <td>ID</td>
+                            <td>
+                                <input type="text" name="" id="id">
+                                <span class="verify_span" id="login_id_alert_span"></span>
+                        </tr>
+                        <tr>
+                            <td>Pasword</td>
+                            <td>
+                                <input type="password" name="" id="pwd"><span class="verify_span" id="login_pwd_alert_span"></span>
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="2">
+                                <input type="button" class="btn-success" value="로그인" id='btn_login' />
+                                <input type="button" class="btn-success" value="아이디 암호 찾기" />
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!--[E]Container-->
+    <!--[S]footer-->
+    <footer>
+        <div class="footer_div ">
+            <p>Copyright 2018 |All Right Rserved |Designed By 정광수</p>
+            <p>Contact information: <a href="mailto:kjjks12@gsitm.com ">kjjks12@gsitm.com</a>&nbsp;|&nbsp; <a href="오시는길.html " target="iframe ">오시는길</a>
+            </p>
+        </div>
+    </footer>
+    <!--[E]footer-->
+</body>
+
+</html>

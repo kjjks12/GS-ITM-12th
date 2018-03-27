@@ -1,0 +1,139 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD Xhtml 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title></title>
+    <style>
+    body {
+        font-size: 9pt;
+        font-family: "굴림";
+    }
+
+    div,
+    p,
+    ul,
+    li {
+        border: 1px #eeeeee solid;
+        margin: 10px;
+    }
+
+    ul {
+        padding: 10px;
+    }
+
+    li.select {
+        background-color: #ccc;
+    }
+
+    menu
+    </style>
+    <script type="text/javascript" src="../libs/jquery-1.11.0.min.js"></script>
+    <script>
+    $(document).ready(function() {
+        var $li = $("<li>new menuM</li>");
+        console.log($li.get(0));
+        //신규노드를 첫번째 자식 노드로 추가
+
+        var count = 0;
+        /*
+        prepend : 부모한테 이넘을 추가
+        prependTo : 자식을 어떤놈한테 추가
+        */
+        $('#btnAdd').on('click', function() {
+            //$('ul.menu').prepend($('<li>new menu'+count+'</li>'));
+
+            //밑의 2개는 같은 역할 수행
+            //$('<li>new menu'+count+'</li>').insertBefore('ul.menu li.select');
+            $('ul.menu li.select').before('<li>new menu' + count + '</li>');
+            count++;
+        })
+        var $menuName = $('#content');
+        var $selectItem = null;
+        $('#addBtn').on('click', function() {
+            $('.tab-menu').append('<li>' + $('#content').val() + '</li>');
+            $menuName.val('');
+            $menuName.focus();
+        });
+
+        //라이브 이벤트 .tab-menu 
+        $('.tab-menu').on("click", "li", function() {
+            if ($selectItem != null) {
+                $('.tab-menu li').removeClass('select');
+            }
+            $selectItem = $(this);
+            $selectItem.addClass('select');
+            $('#content').val($selectItem.text());
+        });
+
+        $('#updateBtn').on('click', function() {
+            //null이면 false 값이 있으면 true
+            if ($selectItem) {
+                $selectItem.text($menuName.val());
+            } else {
+                alert('선택해');
+            }
+        })
+
+        $('#deleteBtn').on('click', function() {
+            //null이면 false 값이 있으면 true
+            if ($selectItem) {
+                $selectItem.remove();
+                $selectItem = null;
+            } else {
+                alert('선택해');
+            }
+        })
+
+        $('#upBtn').on('click', function() {
+            //null이면 false 값이 있으면 true
+            if ($selectItem) {
+                var $prevItem = $selectItem.prev();
+                if ($prevItem) {
+                    $selectItem.insertBefore($prevItem);
+                }
+            } else {
+                alert('선택해');
+            }
+        })
+
+         $('#DownBtn').on('click', function() {
+            //null이면 false 값이 있으면 true
+            if ($selectItem) {
+                var $nextItem = $selectItem.next();
+                if ($nextItem) {
+                    $selectItem.insertAfter($nextItem);
+                }
+            } else {
+                alert('선택해');
+            }
+        })
+
+
+    });
+    </script>
+</head>
+
+<body>
+    <button id="btnAdd">
+        추가
+    </button>
+    <ul class="menu">
+        <li>menu1</li>
+        <li>menu2</li>
+        <li class="select">menu3</li>
+        <li>menu4</li>
+        <li>menu5</li>
+        <li>menu6</li>
+    </ul>
+    <div>
+        <input type="text" name="" id="content" />
+        <input type="button" name="" id="addBtn" value="추가" />
+        <input type="button" name="" id="updateBtn" value="수정" />
+        <input type="button" name="" id="deleteBtn" value="삭제" />
+        <input type="button" name="" id="upBtn" value="UP" />
+        <input type="button" name="" id="DownBtn" value="DOWN" />
+        <ul class="tab-menu"></ul>
+</body>
+
+</html>

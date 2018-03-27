@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <title>게시판 글쓰기</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="../css/common.css">
+    <script src="../libs/jquery-1.11.0.min.js"></script>
+    <script src="../libs/tinymce/js/tinymce/tinymce.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <style type="text/css">
+    td {
+        background-color: #ffffff;
+    }
+
+    textarea {
+        width: 100%;
+        height: 500px;
+        resize: none;
+    }
+    </style>
+    <script type="text/javascript">
+    tinymce.init({ selector: 'textarea' });
+
+    $(document).ready(function() {
+        $('#btn-enroll').click(function(event) {
+            //lert('a');
+            swal({
+                title: "글이 성공적으로 등록되었습니다.",
+                text: "즐거운 사이트 이용 되세용",
+                icon: "success"
+            }).then(function() {
+                // Redirect the user
+                window.location.href = "게시판보기.html";
+                console.log('The Ok Button was clicked.');
+            });
+        });
+
+
+    }); //[E]Jquery
+    </script>
+</head>
+
+<body>
+    <div class="list-box-title">
+        <span>
+                <i class="icon icon-accessibility"></i>
+                게시판 글쓰기
+        </span>
+    </div>
+    <table>
+        <thead></thead>
+        <tbody>
+            <tr>
+                <td>제목</td>
+                <td>
+                    <input type="text" name="" id="">
+                </td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="2">
+                    <textarea class="board_write"></textarea>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="button" class="btn-success" id="btn-enroll" value="등록" />
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+</body>
+
+</html>

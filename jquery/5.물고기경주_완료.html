@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <style>
+        #panel{
+            width:600px;
+            height:400px;
+            border:1px solid #999;
+            position:relative;
+        }
+        img {
+          width:50px;
+        }
+        #fish1{
+            position:absolute;
+            left:0;
+            top:0;
+        }
+        #fish2{
+            position:absolute;
+            left:0;
+            top:100px;
+        }
+        #fish3{
+            position:absolute;
+            left:0;
+            top:200px;
+        }
+        #fish4{
+            position:absolute;
+            left:0;
+            top:300px;
+        }
+
+    </style>
+    <script type="text/javascript"  src="../libs/jquery-1.11.0.min.js"> </script>
+    <script>
+    var panelWidth = 0;
+    var panelHeight = 0;
+    var timerId1 = null;
+    var timerId2 = null;
+    var timerId3 = null;
+    var timerId4 = null;
+    var order = 1;
+
+    window.onload = function(){
+      var $fish = $("#fish1");
+      panelWidth = parseInt($('#panel').css('width'));
+      panelHeight = parseInt($('#panel').css('height'));
+
+      panelWidth = panelWidth - parseInt($fish.css('width'));
+      panelHeight = panelHeight - parseInt($fish.css('height'));
+
+      $("#btnStart").on('click', function(){
+        timerId1 = setInterval(function() {moveFish('fish1');}, 10);
+        timerId2 = setInterval(function() {moveFish('fish2');}, 10);
+        timerId3 = setInterval(function() {moveFish('fish3');}, 10);
+        timerId4 = setInterval(function() {moveFish('fish4');}, 10);
+      });
+
+      $('#btnReset').on('click', function() {
+        $("#fish1").css('left',0);
+        $("#fish2").css('left',0);
+        $("#fish3").css('left',0);
+        $("#fish4").css('left',0);
+        $('#result').html('');
+        order = 1;
+      });
+    }
+
+    function moveFish(_fishid) {
+      var _fish = $('#' + _fishid);
+      var left = parseInt(_fish.css('left')) + parseInt(Math.random() * 3);
+      if (left <= panelWidth) {
+        _fish.css({
+          left: left
+        });
+      } else {
+        $('#result').html($('#result').html() + order + '등: ' + _fish[0].id + '<br>');
+        switch(_fishid) {
+          case 'fish1':
+            clearInterval(timerId1);
+            break;
+          case 'fish2':
+            clearInterval(timerId2);
+            break;
+          case 'fish3':
+            clearInterval(timerId3);
+            break;
+          case 'fish4':
+            clearInterval(timerId4);
+            break;
+        }
+
+        order++;
+      }
+    }
+    </script>
+
+</head>
+
+<body>
+    <button id="btnStart">시작</button>
+    <button id="btnReset">초기화</button>
+    <div id="panel">
+        <img src="fish1.png" id="fish1">
+        <img src="fish1.png" id="fish2">
+        <img src="fish1.png" id="fish3">
+        <img src="fish1.png" id="fish4">
+    </div>
+    <div id="result"></div>
+</body>
+</html>
+

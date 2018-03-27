@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+    <script type="text/javascript" src="../libs/jquery-1.11.0.min.js"></script>
+</head>
+<script type="text/javascript">
+jQuery(function() {
+    var isCtrl = false;
+    $("#btn").on('click', function() {
+        alert('클릭이벤트');
+    });
+    /** one 메서드 쓰면 한번만 사용 
+        $("#btn").one('click', function() {
+        alert('클릭이벤트');
+    });
+    */
+    $("#btn").on('mouseover', function() {
+        alert('마우스오버');
+    });
+    $("#off").on('click', function() {
+        $("#btn").off();
+    });
+    $("a").on('click', function(e) {
+    	//e안에 거의 모든 이벤트 들이 있어
+        console.log(e);
+        if (!e.ctrlKey) {
+            e.preventDefault();
+        }
+    })
+    $('ul').on('click',function(){
+    	alert('ul 클릭');
+    })
+
+    $('ul').on('click','li',function(){
+    	 alert('li 클릭');
+    	 //부모노드에도 click이벤트가 있어서 두번 눌러지는 효과인데 이거 중지 
+    	 //e.stopPropagation();
+    })
+    
+
+})
+</script>
+
+<body>
+    <button id="btn">저장</button>
+    <button id="off">버튼이벤트 제거 </button>
+    <a href="http://www.naver.com">네이버 가즈아</a>
+    <ul>
+    	<li>첫번째</li>
+    	<li>두번쨰</li>
+    	<li>세번째</li>
+    	<li>세번째</li>
+    	<li>네번째</li>
+    	<li>다섯번째</li>
+    </ul>
+</body>
+
+</html>

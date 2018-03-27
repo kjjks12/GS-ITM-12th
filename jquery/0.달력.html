@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title></title>
+  <style>
+    table {
+      width:420px;
+      border-width: 0px;
+    }
+    td, th {
+      border-width: 0px;
+      height: 60px;
+      width:60px;
+      font-size: 16px;
+      text-align:center;
+    }
+    td.date:hover {
+      background-color: #e8e8e8;
+    }
+    .header {
+      font-size: 24px;
+      font-weight: bold;
+    }
+    .sun {
+      color: red;
+    }
+    .sat {
+      color: blue;
+    }
+    button {
+      font-size: 26px;
+      cursor: pointer;
+      border-width: 0px;
+      background-color: white;
+    }
+  </style>
+  <script src="libs/jquery-1.11.0.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      setCalendar(new Date);
+
+      // 이전달 버튼
+      $('#prev').on('click', function(event) {
+        setCalendar(new Date(parseInt($('#year').text()), parseInt($('#mon').text()) - 2,1));
+      });
+      // 다음달 버튼
+      $('#next').on('click', function(event) {
+        setCalendar(new Date(parseInt($('#year').text()), parseInt($('#mon').text()),1));
+      });
+
+      // 날짜 선택
+      $('table td.date').on('click', function(event) {
+        var selectday = new Date(parseInt($('#year').text()), parseInt($('#mon').text()) - 1, $(this).text());
+        var year = selectday.getFullYear();
+        var month = (selectday.getMonth() + 1);
+        var date = selectday.getDate();
+        console.log('선택한 날짜는 ' + year + '-' + (month<10 ? '0'+month : month) + '-' + (date<10 ? '0'+date : date));
+      });
+    });
+
+    /*
+    날짜 뿌려주기
+    parameter : 선택 월 Date instance
+    */
+    function setCalendar(_date) {
+      $('#year').text(_date.getFullYear());
+      $('#mon').text(_date.getMonth() + 1);
+      // 시작일자(_date는 선택월의 1일이다)의 요일
+      var nowWeek = _date.getDay();
+      // 선택월의 마지막 날짜
+      var lastday = new Date(_date.getFullYear(), _date.getMonth() + 1, 0).getDate();
+      // 시작요일 보다 index가 큰 녀석부터 td가져옴
+      // 시작요일이 4 (목) 이며 $('table td') 중에 index가
+      // 3보다 큰 td객체만 가져온다.
+      // 시작요일이 일요일이면 처음 td부터니까..전체 가져올것
+      var $td = $('table td' + (nowWeek == 0 ? '' : ':gt(' + (nowWeek - 1) + ')'));
+
+      var daycount = 1; // 1일부터 시작
+      $('table td').text('').removeClass('date'); // 초기화
+      $td.each(function(index) {
+        $(this).text(daycount);
+        $(this).addClass('date');
+        daycount++;
+        if (daycount > lastday) {
+          return false;
+        }
+      });
+    }
+  </script>
+</head>
+<body>
+  <table>
+    <tr>
+      <th class='header'><button id="prev">&lt;</button></th>
+      <th class='header' colspan="5"><span id="year"></span>년 <span id="mon"></span>월</th>
+      <th class='header'><button id="next">&gt;</button></th>
+    </tr>
+    <tr>
+      <th class='sun'>일</th>
+      <th class='week'>월</th>
+      <th class='week'>화</th>
+      <th class='week'>수</th>
+      <th class='week'>목</th>
+      <th class='week'>금</th>
+      <th class='sat'>토</th>
+    </tr>
+    <tr>
+      <td class='sun'></td>
+      <td class='week'></td>
+      <td class='week'></td>
+      <td class='week'></td>
+      <td class='week'></td>
+      <td class='week'></td>
+      <td class='sat'></td>
+    </tr>
+    <tr>
+      <td class='sun'></td>
+      <td class='week'></td>
+      <td class='week'></td>
+      <td class='week'></td>
+      <td class='week'></td>
+      <td class='week'></td>
+      <td class='sat'></td>
+    </tr>
+    <tr>
+      <td class='sun'></td>
+      <td class='week'></td>
+      <td class='week'></td>
+      <td class='week'></td>
+      <td class='week'></td>
+      <td class='week'></td>
+      <td class='sat'></td>
+    </tr>
+    <tr>
+      <td class='sun'></td>
+      <td class='week'></td>
+      <td class='week'></td>
+      <td class='week'></td>
+      <td class='week'></td>
+      <td class='week'></td>
+      <td class='sat'></td>
+    </tr>
+    <tr>
+      <td class='sun'></td>
+      <td class='week'></td>
+      <td class='week'></td>
+      <td class='week'></td>
+      <td class='week'></td>
+      <td class='week'></td>
+      <td class='sat'></td>
+    </tr>
+    <tr>
+      <td class='sun'></td>
+      <td class='week'></td>
+      <td class='week'></td>
+      <td class='week'></td>
+      <td class='week'></td>
+      <td class='week'></td>
+      <td class='sat'></td>
+    </tr>
+  </table>
+</body>
+</html>

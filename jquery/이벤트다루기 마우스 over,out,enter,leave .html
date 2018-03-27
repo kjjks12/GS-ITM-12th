@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+</head>
+<script type="text/javascript" src="../libs/jquery-1.11.0.min.js">
+</script>
+<script type="text/javascript">
+$(function() {
+ /*   $("#parent").on('mouseover', function() {
+        console.log('부모 마우스 오버');
+    });
+
+    $("#parent").on('mouseout', function() {
+        console.log('부모 마우스 아웃');
+    });
+
+    $("#child").on('mouseover', function() {
+        console.log('자식 마우스 오버');
+    });
+
+    $("#child").on('mouseout', function() {
+        console.log('자식 마우스 아웃');
+    });*/
+
+    //enter leave는 부모 있더라도 나 자신만 처리 
+   $("#parent").on('mouseenter', function() {
+        console.log('부모 마우스 오버');
+    });
+
+    $("#parent").on('mouseleave', function() {
+        console.log('부모 마우스 아웃');
+    });
+
+    $("#child").on('mouseenter', function() {
+        console.log('자식 마우스 오버');
+    });
+
+    $("#child").on('mouseleave', function() {
+        console.log('자식 마우스 아웃');
+    });
+})
+</script>
+<style type="text/css">
+#parent {
+    width: 300px;
+    height: 300px;
+    background-color: red;
+}
+
+#child {
+    width: 100px;
+    height: 100px;
+    background-color: yellow;
+    margin: 100px;
+}
+</style>
+
+<body>
+	<a href="#">adsfdsaf</a><a href="#">adsfadsf</a>
+    <div id="parent">
+        부모
+        <div id="child">자식</div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="../libs/jquery-1.11.0.min.js"></script>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title> </title>
+    <style>
+    body {
+        font-size: 9pt;
+        font-family: "굴림";
+    }
+
+    div,
+    p,
+    ul,
+    li {
+        border: 1px #eeeeee solid;
+        margin: 10px;
+    }
+
+    ul {
+        padding: 10px;
+    }
+
+    li.select {
+        background-color: #ccc;
+    }
+    </style>
+    <script type="text/javascript" src="../libs/jquery-1.11.0.min.js">
+    </script>
+    <script>
+    $(document).ready(function() {
+        // 코드는 여기에 작성할 예정입니다.
+        //alert("사용할 준비 완료");
+        console.log($('div').eq(2)); //div의 2번째 놈 을 가져와
+        console.log($("div:eq(2)"));
+        console.log($('div').get(2)); //자바스크립트 dom객체로 리턴 
+        console.log($('#samplePage')[0]) //dom객체 접근 방법 2
+
+        /*
+        자바스크립트 돔 : 그냥 태그들 반환
+        Jqeury 객체 : 그안에 수많은 요소들 다 반환 
+        */
+
+        $('div').each(function() { //div요소들 뺑뺑이 
+            console.log(this); //javascript DOM객체 -> 태그 요소들 
+            console.log($(this)); //Jquery 객체로 만들고 싶어 ->여기서 사용할수 있는 메소드들 다 가져오는겨
+            var $this = $(this);
+            //$this.css("background-color","red");
+        });
+
+        var $liList = $("ul.menu li");
+        //filter= 찾은 노드 중에서 특정 노드만 찾기
+        $liList.filter(".select").css("border", "4px solid #f00"); //그 요소들 중에서 또 filter 하겠다
+
+        //find=찾은 노드에서 <!!!!!자손이나 자식 노드 !!!!>중에서 찾기
+        var $content = $("#content");
+        $content.find(".test1").css("border", "4px solid #foo");
+
+        var $div = $('div');
+        //인덱스 값 구하기 
+        console.log($('div #header').index()); //0은 1개가 있다
+        //class가 content full이 아니라 부분도 상관없어 라고 포함되있는 녀석들을 찾겠다.
+        console.log($div.filter('[class*=content]'));
+
+        //find로 class=가 menu 인 여석만
+        console.log($div.find('[class=menu]'));
+
+
+        //자식 찾기
+        /*console.log($div.children('.menu'));
+        console.log($div.children().first());
+        console.log($div.children().last());
+        console.log($div.children().eq(0));
+        console.log($div.children(":first"));//이게 최적화 된 코드래  호출이 더 간단하자나
+        console.log($div.children(":eq0"));*/
+
+        //var $menu=$("ul.menu");
+        //$menu.children(":first , :last").css("border","4px solid blue");
+
+
+        /*
+         *중요 !!!!!
+         */
+        //각 div 태그 노드의 첫번째 자식 노드의 border을 변경하세요
+        $div.find(':first').css("border", "4px solid blue");
+
+        //자식노드 찾기
+        //마지막 번째 자식 노드 찾기
+
+        //부모노드 찾기
+        console.log($('ul.menu > li').parent());//나의 부모
+        console.log($('ul.menu > li').parents('#content'));//나의 조상들 
+        console.log($('ul.menu > li').eq(2).prev()); //형재 노드들 중에서 이전 노드 
+        console.log($('ul.menu > li').eq(2).next());
+        console.log($('ul.menu > li').eq(2).prevAll());//배열 리스트로 이전 형제들 
+        console.log($('ul.menu > li').eq(2).nextAll('.test2'));//배열형태로 내 동생들
+
+
+        //미션
+        //1. 
+
+    }); //[E] Jquery
+    </script>
+</head>
+
+<body>
+    <div id="samplePage" class="page">
+        샘플 페이지(div, id=samplePage, class=page)
+        <div id="header">
+            헤더 영역(div, id=header)
+        </div>
+        <div id="content" class="sample-content">
+            노드 찾기(div, id=content, class=sample-content)
+            <ul class="menu">
+                일반 노드 찾기(ul, class=menu)
+                <li data-value="1">id로 찾기(li, data-value=1)</li>
+                <li class="select">tag로 찾기(li, class=select)</li>
+                <li data-value="2">class로 찾기(li, data-value=2)</li>
+                <li class="test1">속성으로 찾기(li, class=test1)</li>
+            </ul>
+            <div class="content-data">
+                자식 노드 찾기(div, class=content-data)
+                <p class="test1">1. 모든 자식 노드 찾기(p, class=test1)</p>
+                <p>2. 특정 자식 노드만 찾기(p)</p>
+                <p class="test2">3. 마지막 자식 노드 찾기(p, class=test2)</p>
+            </div>
+        </div>
+        <div id="footer">
+            푸터 영역(div, id=footer)
+        </div>
+    </div>
+</body>
+
+</html>

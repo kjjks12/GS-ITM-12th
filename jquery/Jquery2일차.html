@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script src="../libs/jquery-1.11.0.min.js"></script>
+	<script type="text/javascript">
+		
+/*		window.onload=function(){
+				var btn1=window.document.getElementById("btn1");
+
+				//크로스 브라우징처리 
+				if(btn1.attachEvent){//IE 11이하 에서 사용 
+					btn1.attachEvent('onclick',function(){
+						alert('안녕하세요. iE11이하');
+					});
+				}else{
+					btn1.addEventListener('click',function(){
+						alert('안녕하세요 IE 11이상');
+					},false);//false = 버블링 true=캡처
+				}
+		}*/
+
+		$(document).ready(function(){
+			$("#btn1").on("click",function(){
+				alert("jQuery 버튼 클릭")
+			})
+		})
+
+	</script>
+</head>
+<body>
+	<input type="button"  value="button"name="" id="btn1">
+</body>
+</html>

@@ -1,0 +1,84 @@
+<html>
+
+<head>
+    <title>구글지도</title>
+    <link rel="stylesheet" type="text/css" href="css/common.css">
+    <script src="https://maps.googleapis.com/maps/api/js? key=AIzaSyCJIHLYgrcuz0GhxJS1tidl4LA4aPt7O_g&callback=initMap" async defer></script>
+    <script>
+    function initialize() {
+        var myLatlng = new google.maps.LatLng(37.578577,126.986654); // y, x좌표값
+        var mapOptions = {
+            zoom: 17,
+            center: myLatlng,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        }
+
+        var map = new google.maps.Map(document.getElementById('map_canvas'), mapOptions);
+        var marker = new google.maps.Marker({
+            position: myLatlng,
+            map: map,
+            title: "GS ITM"
+        });
+        var infowindow = new google.maps.InfoWindow({
+            content: "<h3>GS ITM</h3>",
+            maxWidth: 300
+        });
+
+        google.maps.event.addListener(marker, 'click', function() {
+            infowindow.open(map, marker);
+        });
+    }
+    </script>
+    <style>
+    .container {
+        position: relative;
+    }
+
+    #map_canvas {
+        width: 100%;
+        height: 500px;
+    }
+
+    .phrase {
+        font-weight: bold;
+        font-size: 20px;
+        line-height: 30px;
+        color: #222222;
+        font-family: 'Nanum Barun Gothic';
+        margin: 20px 0 10px 0;
+    }
+
+    .title {
+        font-size: 24px;
+        line-height: 36px;
+        color: #a64dff;
+        margin: 50px 0 20px 0;
+        border-bottom: 1px solid #d6d6d6;
+        font-family: 'Nanum Barun Gothic Light';
+    }
+    </style>
+</head>
+
+<body onload="initialize()">
+    <div class="list-box-title">
+        <span>
+            <i class="icon icon-accessibility"></i>
+               Contact Us
+        </span>
+    </div>
+    <div class="phrase">
+        [오늘은 뭐먹지] 와 관련된 문의 사항이 있으신 분은 아래의 이메일로 연락주시면, 빠른 시일내에 답해 드리겠습니다
+        <br> 기타 문의사항은 아래 대표번호로 연락주시면 담당자를 연결하여 성실히 답변 드리겠습니다.
+        <br> [오늘은 뭐먹지]는 항상 열려있으며, 여러분들의 의견을 소중히 생각합니다.
+    </div>
+    <div id="map_canvas"></div>
+    <div class="title">본사</div>
+    주소 : 서울시 종로구 계동길 31 보헌빌딩 1F & 2F (우)03059
+    <br> TEL : 02-2189-6700
+    <br> FAX : 02-764-4164 (2F) / 747-2720 (1F)
+    <br>
+    <div class="title">제2사옥</div>
+  	주소 : 서울시 종로구 율곡로 88 삼환빌딩 10F (우)03131
+</body>
+
+</html>

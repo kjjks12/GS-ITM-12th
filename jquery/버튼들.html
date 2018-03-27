@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="../libs/jquery-1.11.0.min.js"></script>
+  <script>
+    var $txt = null;
+    $(document).ready(function() {
+      $txt = $('#txt');
+      $('#txtRead').on('click', function() {
+        alert($txt.val())
+      });
+      $('#txtWrite').on('click', function() {
+        $txt.val($('#txtWrite').text())
+      });
+      $('#rdoRead').on('click', function() {
+        var $radio = $('input:radio:checked');
+        alert($radio.val());
+      });
+      $('#rdoToggle').on('click', function() {
+        var $radio = $('input:radio:not(:checked)');
+        $radio.prop('checked', true);
+      });
+      $('#selectbox').on('change', function() {
+        alert('index is '+$('#selectbox  :selected').index());
+      });
+      $('#selcAdd').on('click', function() {
+        $('#selectbox').append($('<option value='+$txt.val()+'>'+$txt.val()+'</option>'));
+      });
+      $('#selcEdit').on('click', function() {
+        $('#selectbox option:selected').text($txt.val());
+      });
+      $('#selcDel').on('click', function() {
+        $('#selectbox option:selected').remove();
+      });
+      $('#chkAll').on('click', function() {
+        $('input:checkbox:not(:checked)').prop('checked', true);
+      });
+      $('#chkUnCheck').on('click', function() {
+        $('input:checkbox:checked').prop('checked', false);
+      });
+    });
+  </script>
+</head>
+<body>
+  <input type="text" id="txt"><br>
+  <button id="txtRead">텍스트박스 글 읽기</button>
+  <button id="txtWrite">텍스트박스 글 쓰기(버튼명으로)</button><br>
+  <br>
+  <input type="radio" name="rdo" value='1' checked='checked' id="">1
+  <input type="radio" name="rdo" value='2' id="">2<br>
+  <button id="rdoRead">체크된 값 읽기</button>
+  <button id="rdoToggle">다른 녀석으로 체크</button><br>
+  <select name="" id="selectbox">
+    <!-- 동적 노드 추가, 선택 된 노드가 어떤 것인지 -->
+    <!-- 선택한 값, Text Alert,  -->
+    <option value="s1">s1</option>
+    <option value="s2">s2</option>
+    <option value="s3">s3</option>
+    <option value="s4">s4</option>
+  </select>
+  <button id="selcAdd">추가</button>
+  <button id="selcEdit">수정</button>
+  <button id="selcDel">삭제</button><br><br>
+  <!-- 체크박스 선택 All, 전체 취소, -->
+  <input type="checkbox" name="chk" value='c1'>c1
+  <input type="checkbox" name="chk" value='c2'>c2
+  <input type="checkbox" name="chk" value='c3'>c3
+  <input type="checkbox" name="chk" value='c4'>c4<br><br>
+  <button></button>
+  <button id="chkAll">선택 All</button>
+  <button id="chkUnCheck">전체 취소</button><br><br>
+  <textarea name="" id="tarea" cols="30" rows="10"></textarea>
+
+</body>
+</html>

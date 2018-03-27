@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <title>게시판 보기</title>
+    <meta charset="utf-8">
+    <script src="../libs/jquery-1.11.0.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/common.css">
+    <style>
+    .board_write_div {
+        float: right;
+        margin-right: 20px;
+    }
+
+    .pagination {
+        width: 500px;
+        margin: 0 auto;
+    }
+
+    .pagination a {
+        color: black;
+        float: left;
+        padding: 8px 16px;
+        text-decoration: none;
+    }
+
+    tbody>tr>td:first-child {
+        width: 150px;
+        background-color: #a64dff;
+        text-align: center;
+        font-weight: bold;
+        color: white;
+    }
+
+    tbody>tr>td:nth-child(2) {
+        width: 150px;
+        text-align: center;
+        font-weight: bold;
+    }
+
+    .board_write_div a {
+        font-size: 15px;
+    }
+    </style>
+    <script>
+    $(document).ready(function() {
+        $("tbody>tr>td:first-child").each(function(index, el) {
+            $(this).append(index + 1);
+        });
+    });
+    </script>
+</head>
+
+<body>
+    <div class="list-box-title">
+        <span>
+                <i class="icon icon-accessibility"></i>
+                나의 회원 정보
+            </span>
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>글번호</th>
+                <th>글쓴이</th>
+                <th>제목</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td></td>
+                <td>kjjks1</td>
+                <td><a href="게시판상세보기.html">배고파요</a> </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>kjjks2</td>
+                <td><a href="게시판상세보기.html">점심메뉴는??</a></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>kjjks3</td>
+                <td><a href="게시판상세보기.html">GS ITM 인턴사원됬어요</a></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>kjjks3</td>
+                <td><a href="게시판상세보기.html">너무 노가다였어 ㅠㅠㅠ</a></td>
+            </tr>
+        </tbody>
+        <tfoot></tfoot>
+    </table>
+    <div class="board_write_div"><a href="게시판글쓰기.html">글쓰기</a></div>
+    <div class="pagination">
+        <a href="#">&laquo;</a>
+        <a href="#">1</a>
+        <a href="#">2</a>
+        <a href="#">3</a>
+        <a href="#">4</a>
+        <a href="#">5</a>
+        <a href="#">6</a>
+        <a href="#">&raquo;</a>
+    </div>
+</body>
+
+</html>

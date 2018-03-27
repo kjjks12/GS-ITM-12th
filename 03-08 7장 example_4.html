@@ -1,0 +1,52 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Absolute Position</title>
+    <style>
+        #container {
+            width: 500px; height: 300px;
+            border: 3px solid black;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .circle {
+            position: absolute;
+            width: 100px !important; /* 우선순위 제일 높아 내껄 무조건 적용해*/
+            height: 100px !important; 
+            border-radius: 50% 50%;
+        }
+        .dashed{
+            border: 5px dashed orange;
+        }
+
+        #red {
+            background: red;
+            left: 20px; top: 20px;
+        }
+        #green {
+            background: green;
+            right: 20px; top: 20px;
+        }
+        #blue {
+            background: blue;
+            right: 20px; bottom: 20px;
+        }
+        #yellow {
+            background: yellow;
+            left: 20px; bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Dummy Text</h1>
+    <div id="container">
+        <div id="red" class="circle dashed"></div>
+        <div id="green" class="circle dashed"></div>
+        <div id="blue" class="circle dashed"></div>
+        <div id="yellow" class="circle"></div>
+    </div>
+    <h1>Dummy Text</h1>
+</body>
+</html>

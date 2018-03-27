@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="utf-8">
+    <title>Ajax 테스트</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+    <style>
+
+    </style>
+    <script type="text/javascript">
+    /*
+                                                                url: 'http://192.168.9.180:8081/intern/employees',
+                                                                data: JSON.stringify(jsondata),
+                                                                type: 'POST',
+                                                                dataType: 'json'
+                                                                 */
+    /*
+        url: 'http://192.168.9.180:8081/intern/employees',
+        type: 'GET',
+        dataType: 'json'
+         */
+    /*
+        //url: 'http://192.168.9.180:8081/intern/commcd/EDULVL_SXN',
+        url: 'http://192.168.9.180:8081/intern/commcd/HOBBY_SXN',
+        type: 'GET',
+        dataType: 'json'
+         */
+    /*
+        url: 'http://192.168.9.180:8081/intern/commcd',
+        data: jsoncmdata,
+        type: 'GET',
+        dataType: 'json'
+         */
+    var jsondata = {
+        name: '홍길순',
+        dept: '002',
+        hireDate: '2018-03-02',
+        salary: 33000,
+        sex: 'F'
+    };
+    var jsoncmdata = {
+        mstcd: 'HOBBY_SXN'
+    }
+
+    $.ajax({
+            url: 'http://192.168.9.180:8081/intern/commcd',
+            type: 'GET',
+            data: jsoncmdata,
+            dataType: 'json'
+        })
+        .done(function(data) {
+
+            console.log(data);
+
+            var regex;
+
+            for (var i = 0; i < data.length; i++) {
+                var jsonData = data[i];
+                regex += "<tr>";
+                regex += "<td>" + jsonData.detCd + "</td>";
+                regex += "<td>" + jsonData.detNm + "</td>";
+                regex += "<td>" + jsonData.mstCd + "</td>";
+                //alert(obj.detNm);
+                regex += "<td>";
+            }
+            $.each(data, function(idx, obj) {
+                regex += "<tr>";
+                regex += "<td>" + obj.detCd + "</td>";
+                regex += "<td>" + obj.detNm + "</td>";
+                regex += "<td>" + obj.mstCd + "</td>";
+                //alert(obj.detNm);
+                regex += "<td>";
+            });
+            $("tbody").html(regex);
+            regex = null;
+
+
+            for (var i = 0; i < data.length; i++) {
+                var jsonData = data[i];
+                regex += "<option value=" + jsonData.detCd + ">" + jsonData.detNm + "</option>";
+            }
+            $("select").html(regex);
+
+            regex = '';
+
+            for (var i = 0; i < data.length; i++) {
+                /*	<input type="checkbox" name="vehicle" value="Bike"> I have a bike<br>*/
+                var jsonData = data[i];
+                regex += "	<input type='checkbox' value='" + jsonData.detCd + "'>" + jsonData.detNm + "</br>";
+            }
+            $(".div-check-box").html(regex);
+
+        })
+        .fail(function(xhr, status, errorThrown) {
+            console.log(JSON.parse(xhr.responseText).message);
+        })
+        .always(function(xhr, status) {
+            console.log('완료')
+        });
+
+    $.ajax({
+            url: 'http://192.168.9.180:8081/intern/employees',
+            type: 'get',
+            dataType: 'json'
+        })
+        .done(function(jsonObj) {
+            console.log("success");
+            makeUserTable(jsonObj);
+        })
+        .fail(function() {
+            console.log("error");
+        })
+        .always(function() {
+            console.log("complete");
+        });
+
+
+    function makeUserTable(jsonObj) {
+        var regex = '';
+        for (var i in jsonObj) {
+            regex += "<tr>";
+            regex += "<td>" + jsonObj[i].no + "</td>";
+            regex += "<td>" + jsonObj[i].name + "</td>";
+            regex += "<td>" + jsonObj[i].id + "</td>";
+            regex += "<td>" + jsonObj[i].salary + "</td>";
+            regex += "<td>" + jsonObj[i].salary2 + "</td>";
+            regex += "<td>" + jsonObj[i].hireDate + "</td>";
+            regex += "<td>" + jsonObj[i].dept + "</td>";
+            regex += "<td>" + jsonObj[i].sexNm + "</td>";
+            regex += "</tr>";
+        }
+        $(".table-user").html(regex);
+        regex = '';
+    }
+    </script>
+</head>
+
+<body>
+    <section></section>
+    <div></div>
+    <table>
+        <thead>
+            <tr>
+                <td>code</td>
+                <td>detNm</td>
+                <td>mstCd</td>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+    <select>
+    </select>
+    <div class="div-check-box"></div>
+    <table class="table-user">
+        <thead>
+            <tr>
+                <td>no</td>
+                <td>name</td>
+                <td>id</td>
+                <td>salary</td>
+                <td>salary2</td>
+                <td>hireDate</td>
+                <td>dept</td>
+                <td>sex</td>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+</body>
+
+</html>

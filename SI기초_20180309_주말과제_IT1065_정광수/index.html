@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <title>index</title>
+    <meta charset="utf-8">
+    <script src="libs/jquery-1.11.0.min.js"></script>
+    <meta http-equiv="refresh" content="3;URL=main.html" />
+    <style>
+    #videobcg {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        min-width: 100%;
+        min-height: 100%;
+        width: auto;
+        height: auto;
+        z-index: -1000;
+        overflow: hidden;
+    }
+
+    #div-title {
+        margin-top: 100px;
+        text-align: center;
+        font-size: 50px;
+    }
+    </style>
+    <script type="text/javascript">
+    var curPos = 0;
+    var titleStr = "오늘은 뭐먹지?";
+    var clearID = setInterval(makeTitle, 200);
+
+    function makeTitle() {
+
+        // alert(curPos);
+        var color = '#' + (parseInt(Math.random() * 0xffffff)).toString(16);
+
+        var $cSpan = $('<span></span>');
+        $cSpan.text(titleStr.charAt(curPos++));
+
+        $cSpan.css({
+            fontSize: 100,
+            color: color,
+            display: 'inline-block',
+            marginRight:50
+        });
+   
+        $("#title").append($cSpan);
+
+        if (curPos == titleStr.length) {
+            clearInterval(clearID);
+        }
+
+    }
+    </script>
+</head>
+
+<body>
+    <div id="div-title">
+        <div id="title"></div>
+    </div>
+    <video id="videobcg" preload="auto" autoplay="autoplay" loop="loop" muted>
+        <source src="hamuk_info.mp4" type="video/mp4">
+    </video>
+</body>
+
+</html>

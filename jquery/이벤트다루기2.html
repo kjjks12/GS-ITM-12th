@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+    <script type="text/javascript" src="../libs/jquery-1.11.0.min.js">
+    </script>
+    <script type="text/javascript">
+    $(document).ready(function() {
+
+        //특정 요소의 포커스를 뺄때는 .blur()
+        $('#txt').on('blur', function() {
+            console.log($(this).val());
+        });
+
+        //이전의 값과 달라졌을때 읽히는게 체인지
+        $('#txt').on('change', function() {
+            console.log($(this).val());
+        });
+
+        //resize resizeTo 차이 알기
+        $('#ttt').on('resize', function() {
+            console.log($(this).val());
+        });
+
+        //select 드래그로 선택하면 발생하는 이벤트
+
+        //submit form 형식에 submit
+
+
+        //click doubleclick  (현재는 안먹어 div만들어서 해봐)
+
+        //키보드 누른 순간 
+        $('body').on('keydown', function(event) {
+            console.log($(this).val());
+            console.log(event);
+        });
+
+        //키보드  올라왔을때 이때 이벤트 처리해야해 
+        $('body').on('keyup', function(event) {
+            console.log($(this).val());
+            console.log(event);
+        });
+        //키보드 누르고 있는 상태  
+        $('body').on('keypress', function(event) {
+            console.log($(this).val());
+            console.log(event);
+        });
+    });
+    </script>
+</head>
+
+<body>
+    <textarea id="ttt"></textarea>
+    <input type="text" name="" id="txt">
+</body>
+
+</html>

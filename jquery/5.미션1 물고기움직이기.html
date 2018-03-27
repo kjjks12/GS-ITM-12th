@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+    html,
+/*     body {
+    height: 100%
+} */
+
+    #panel {
+        width: 100%;
+        height: 600px;
+        border: 1px solid #999;
+        position: relative;
+    }
+
+    #fish {
+        position: absolute;
+        left: 250px;
+        top: 150px;
+    }
+    </style>
+    <script type="text/javascript" src="../libs/jquery-1.11.0.min.js">
+    </script>
+    <script>
+    /*
+                1.onload 쓰는 이유 이미지의 넒이높이를 알아야해 
+                    */
+    window.onload = function() {
+        //물고기 노드 구하기.
+        var $fish = $("#fish");
+        var pWidth = parseInt($('#panel').css('width'));
+        var pHeight = parseInt($('#panel').css('height'));
+        var timerId = null;
+        var useWidth = pWidth - parseInt($fish.css('width'));
+        var useHeight = pHeight - parseInt($fish.css('height'));
+
+
+        $("#btnStart").click(function() {
+            useWidth
+            var left = parseInt(Math.random() * useWidth);
+            //var top = parseInt(Math.random() * useHeight);
+            //물고기 위치 설정하기
+            $fish.css({
+                left: left,
+               // top: top
+            })
+            moveFish();
+        });
+
+        function moveFish() {
+            $fish.animate({
+                left: useWidth
+            }, 2000);
+        }
+
+
+    }
+    </script>
+</head>
+
+<body>
+    <button id="btnStart">클릭하면 물고기가 움직여요.</button>
+    <div id="panel">
+        <img src="fish1.png" id="fish">
+    </div>
+</body>
+
+</html>

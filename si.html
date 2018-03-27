@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<script type="text/javascript">
+	var globalV="전역변수";
+
+	window.onlaod=function(){
+		var local1 = '지역변수1';
+		alert('a');
+		func2();
+		func1(100,200);
+	}
+	function func2(){
+		alert('a');
+	}
+	function func1(num,num2){
+		var loca1='지역변수';
+		alert(num1+'ss'+num2);
+		document.write('매개변수 num1='+num1 +",num2="+num2);
+	}
+</script>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>회원 가입 폼</title>
+	<meta charset="UTF-8">
+	<style>
+
+	table{
+		width:800px;
+	}
+	tr,td{ 
+		width: 100px;
+    padding: 10px;
+    vertical-align: top;
+    border: 1px solid #ccc;
+  }
+
+	.table_text{
+		background-color: yellow;
+		font-size: 20px
+		width:200px;
+		text-align: center;
+	}
+
+
+	input[type="button"]{
+		 background-color: #008CBA; /* Green */
+    border: none;
+    color: white;
+    padding: 5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 3px;
+	}
+
+	input[type="submit"]{
+		 background-color: #008CBA; /* Green */
+    border: none;
+    color: white;
+    padding: 5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 3px;
+	}
+	</style>
+</head>
+<body>
+	<div>
+	<h1>회원 가입 </h1>
+	<form action="" method="post">
+
+			<table>
+				<thead></thead>
+				<tbody>
+					<tr>
+						<td class="table_text">이름</td>
+						<td><input type="text" placeholder="id를 입력해 주세요 "/><input type="button" value="중복확인"/></td>
+					</tr>
+					<tr>
+							<td class="table_text">성별</td>
+							<td>
+								<input type="radio" id="man" name="gender" value="m"/><label for="man">남자</label>
+								<input type="radio" id="woman" name="gender" value="w"/><label for="woman">여자</label>
+							</td>
+					</tr>
+					<tr>
+						<td class="table_text">암호</td>
+						<td><input type="password" placeholder="암호를 입력해 주세요 "/></td>
+					</tr>
+					<tr>
+						<td class="table_text">암호 확인</td>
+						<td><input type="password" placeholder="암호를 입력해 주세요 "/></td>
+					</tr>
+					<tr>
+						<td class="table_text">전화번호</td>
+						<td><input type="text" placeholder="전화번호를 입력해주세요"/></td>
+					</tr>
+					<tr>
+						<td class="table_text">이메일</td>
+						<td><input type="text" placeholder="암호를 입력해 주세요 "/></td>
+					</tr>			
+				</tbody>
+				<tfoot>
+					<tr>
+						<td colspan="2">
+							<input type="submit" class="btn-success" value="등록"/>		
+						</td>
+					</tr>
+				</tfoot>
+			</table>
+	</form>
+	</div><!--container-->
+</body>
+</html>

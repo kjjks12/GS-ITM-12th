@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <title>나의회원정보 수정 </title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="../css/common.css">
+    <script src="../libs/jquery-1.11.0.min.js"></script>
+    <script src="https://unpkg.com/sweetalert2@7.16.0/dist/sweetalert2.all.js"></script>
+    <script type="text/javascript" src="../js/verify.js"></script>
+    <script>
+    $(document).ready(function() {
+        loadInfo();
+        $pwd = $("#txtPwd");
+        $phone = $("#txtPhone");
+        $email = $("#txtEmail");
+        $('#btnSubmit').click(function(event) {
+            if (typeCheck()) {
+
+                swal({
+                    title: "회원수정 완료 ",
+                    text: "즐거운 사이트 이용 되세용",
+                    type: "success",
+                    showConfirmButton: false,
+                });
+                setTimeout(function() {
+                    location.href = "../main_content/디폴트.html";
+                }, 1000);
+
+                sessionStorage.setItem('pwd', $pwd.val());
+                sessionStorage.setItem('phone', $phone.val());
+                sessionStorage.setItem('email', $email.val());
+
+            }
+        });
+
+        function loadInfo() {
+            var id = sessionStorage.getItem('id');
+            var sex = sessionStorage.getItem('sex')
+            var pwd = sessionStorage.getItem('pwd');
+            var phone = sessionStorage.getItem('phone');
+            var email = sessionStorage.getItem('email');
+            $("#id").text(id);
+            if (sex == 1) {
+                $("#man").prop("checked", true);
+            } else if (sex == 2) {
+                $("#woman").prop("checked", true);
+            }
+            $("#txtPwd").val(pwd);
+            $("#txtPhone").val(phone);
+            $("#txtEmail").val(email);
+        }
+
+        function typeCheck() {
+            $pwd = $("#txtPwd");
+            $phone = $("#txtPhone");
+            $email = $("#txtEmail");
+
+            if ($pwd.val() == '') {
+                $("#pwd_alert_span").text("암호를 입력해주세요");
+                $($pwd).focus();
+                return false;
+            } else {
+                $("#pwd_alert_span").text("");
+            }
+
+            if ($phone.val() == '') {
+                $("#phone_alert_span").text("전화번호를 입력해주세요");
+                $($phone).focus();
+                return false;
+            } else if (!phoneVerify($phone.val())) {
+                $("#phone_alert_span").text("형식이 유효하지 않습니다 ex)010-1234-5678");
+                $($phone).focus();
+                return false;
+            } else {
+                $("#phone_alert_span").text("");
+            }
+
+            if ($email.val() == '') {
+                $("#email_alert_span").text("이메일을 입력해주세요");
+                $($email).focus();
+                return false;
+            } else if (!emailVerify($email.val())) {
+                $("#email_alert_span").text("이메일 형식이 유효하지 않습니다");
+                $($email).focus();
+                return false;
+            } else {
+                $("#email_alert_span").text("");
+            }
+            return true;
+        }
+
+    }); //jQuery End
+    </script>
+    <style type="text/css">
+    .verify_span {
+        margin-left: 10px;
+        color: red;
+        font-size: 15px;
+    }
+    </style>
+</head>
+
+<body>
+    <div>
+        <div class="list-box-title">
+            <span>
+                <i class="icon icon-accessibility"></i>
+                나의 회원정보 수정 
+            </span>
+        </div>
+        <form action="" method="post">
+            <table>
+                <thead></thead>
+                <tbody>
+                    <tr>
+                        <td>ID</td>
+                        <td>
+                            <span id="id"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>성별</td>
+                        <td>
+                            <input type="radio" id="man" name="gender" value="m" disabled />
+                            <label for="man">남자</label>
+                            <input type="radio" id="woman" name="gender" value="w" disabled />
+                            <label for="woman">여자</label>
+                            <span class="verify_span" id="gender_alert_span"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>암호</td>
+                        <td>
+                            <input type="password" placeholder="암호를 입력해 주세요 " id="txtPwd" value="1234" />
+                            <span class="verify_span" id="pwd_alert_span"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>전화번호</td>
+                        <td>
+                            <input type="text" placeholder="전화번호를 입력해주세요" id="txtPhone" />
+                            <span class="verify_span" id="phone_alert_span"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>이메일</td>
+                        <td>
+                            <input type="text" placeholder="이메일을 입력해 주세요" id="txtEmail" />
+                            <span class="verify_span" id="email_alert_span"></span>
+                        </td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="2">
+                            <input type="button" class="btn-success" value="수정" id="btnSubmit" />
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+        </form>
+    </div>
+    <!--container-->
+</body>
+
+</html>

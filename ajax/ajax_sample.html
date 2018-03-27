@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ko">
+	<head>
+		<meta charset="utf-8">
+		<title>Ajax 테스트</title>
+		<meta name="keywords" content="">
+		<meta name="description" content="">
+	  <script src="libs/jquery-1.11.0.min.js"></script>
+		<style>
+		</style>
+		<script type="text/javascript">
+			/*
+        url: 'http://192.168.9.180:8081/intern/employees',
+        data: JSON.stringify(jsondata),
+        type: 'POST',
+        dataType: 'json'
+			*/
+			/*
+        url: 'http://192.168.9.180:8081/intern/employees',
+        type: 'GET',
+        dataType: 'json'
+			*/
+			/*
+        //url: 'http://192.168.9.180:8081/intern/commcd/EDULVL_SXN',
+        url: 'http://192.168.9.180:8081/intern/commcd/HOBBY_SXN',
+        type: 'GET',
+        dataType: 'json'
+			*/
+			/*
+        url: 'http://192.168.9.180:8081/intern/commcd',
+        data: jsoncmdata,
+        type: 'GET',
+        dataType: 'json'
+			*/
+			var jsondata = {
+				name: '홍길순',
+				dept: '002',
+				hireDate: '2018-03-02',
+				salary: 33000,
+				sex: 'F'
+			};
+			var jsoncmdata = {
+				mstcd: 'EDULVL_SXN'
+			}
+
+      $.ajax({
+        url: 'http://192.168.9.180:8081/intern/employees',
+        type: 'POST',
+        data: jsondata,
+        dataType: 'json'
+      })
+			.done(function(json) {
+			  console.log(json)
+			})
+			.fail(function(xhr, status, errorThrown) {
+			  console.log(JSON.parse(xhr.responseText).message);
+			})
+			.always(function(xhr, status) {
+			  console.log('완료')
+			});
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

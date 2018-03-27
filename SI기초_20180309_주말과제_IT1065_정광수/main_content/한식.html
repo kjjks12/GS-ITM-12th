@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>한식</title>
+    <link rel="stylesheet" type="text/css" href="../css/common.css">
+    <link rel="stylesheet" type="text/css" href="../css/recipeShow.css">
+    <script src="../libs/jquery-1.11.0.min.js"></script>
+    <style type="text/css">
+    .li-row {
+        display: table-row;
+        border-spacing: 10px;
+    }
+
+    ul {
+        display: table;
+        border-spacing: 10px;
+    }
+
+    li {
+        width: 300px;
+        height: 450px;
+        border: solid black 1px;
+        list-style: none;
+        display: table-cell;
+    }
+
+    .recipe_img {
+        width: 300px;
+        height: 300px;
+    }
+
+    .author_img {
+        width: 61px;
+        height: 61px;
+        border-radius: 50%;
+        overflow: hidden;
+        display: block;
+        margin: -30.5px auto 5px;
+    }
+
+    .author {
+        text-align: center;
+        width: 100%;
+        z-index: 5;
+        display: block;
+        margin-top: -40px;
+        position: relative;
+    }
+
+    .recipe_content {
+        text-align: center;
+        font-size: 15px;
+        line-height: 19px;
+        letter-spacing: -0.025em;
+        padding: 2px 20px 0;
+    }
+
+    h1 {
+        margin-left: 100px;
+    }
+
+    .btn-div {
+        text-align: center;
+    }
+
+    #btn-recipe_enroll {
+        width: 100%;
+    }
+    </style>
+    <script>
+    $(function() {
+        $("#btn-recipe_enroll").on('click', function() {
+            location.href = "../recipe/메뉴등록하기.html";
+        })
+    })
+    </script>
+</head>
+
+<body>
+    <div class="list-box-title">
+        <span>
+                <i class="icon icon-accessibility"></i>
+                한식
+        </span>
+    </div>
+    <!--[S]ul시작 -->
+    <ul>
+        <div class="li-row">
+            <!--[S] li(아이템 리스트)-->
+            <li>
+                <a class="call_recipe thmb" href="../recipe_detail/korea/63770.html">
+                          <img class="recipe_img" src="https://cloudfront.haemukja.com/vh.php?url=https://d1hk7gw6lgygff.cloudfront.net/uploads/direction/image_file/63770/mid_thumb_______1.jpg&convert=jpgmin&rt=600" >
+            </a>
+                <span class="author">
+                          <a href="https://haemukja.com/profile//209056" target="_blank">
+                            <img alt="헤븐리 오븐" class="author_img" src="https://cloudfront.haemukja.com/vh.php?url=https://d1hk7gw6lgygff.cloudfront.net/uploads/user/image_file/209056/thumb_profile_aeri.jpg&convert=jpgmin&rt=600">
+                            </a>      
+                            <strong>
+                              <a href="https://haemukja.com/profile/215">앨샘</a>
+                            </strong>
+            </span>
+                <p class="recipe_content">
+                    <a class="call_recipe" href="../recipe_detail/korea/63770.html">
+      시판 양념불고기 활용 요리 쇠고기 비빔국수
+                              <br>
+                              <strong>쇠고기 비빔국수</strong>
+                            </a>
+                </p>
+            </li>
+            <!--[E] li(아이템 리스트)-->
+            <!--[S] li(아이템 리스트)-->
+            <li>
+                <a class="call_recipe thmb" href="../recipe_detail/korea/5465.html">
+                          <img class="recipe_img" src="https://cloudfront.haemukja.com/vh.php?url=https://d1hk7gw6lgygff.cloudfront.net/uploads/recipe/image_file/5465/mid_thumb_____01.__001.jpg&convert=jpgmin&rt=600" >
+                        </a>
+                <span class="author">
+                          <a href="https://haemukja.com/profile/510" target="_blank">
+                            <img alt="요상한 주걱" class="author_img" src="https://cloudfront.haemukja.com/vh.php?url=https://d1hk7gw6lgygff.cloudfront.net/uploads/user/image_file/1368898/thumb_profile1518444584546.jpg&convert=jpgmin&rt=600">
+                            </a>      
+                            <strong>
+                              <a href="https://haemukja.com/profile/1368898" target="_blank">두둠칫</a>
+                            </strong>
+                        </span>
+                <p class="recipe_content">
+                    <a class="call_recipe thmb" href="../recipe_detail/korea/5465.html">
+                                  삼겹살과 덕볶이의 콜라보!!
+                                  <br>
+                                    <strong>두둠칫</strong>
+                            </a>
+                </p>
+            </li>
+            <!--[E] li(아이템 리스트)-->
+            <!--[S] li(아이템 리스트)-->
+            <li>
+                <a class="call_recipe thmb" href="../recipe_detail/korea/5482.html">
+                          <img class="recipe_img" src="https://cloudfront.haemukja.com/vh.php?url=https://d1hk7gw6lgygff.cloudfront.net/uploads/recipe/image_file/5482/mid_thumb_DSC09656-1.jpg&convert=jpgmin&rt=600" >
+                        </a>
+                <span class="author">
+                          <a href="https://haemukja.com/profile/10087" target="_blank">
+                            <img alt="요상한 주걱" class="author_img" src="https://d1hk7gw6lgygff.cloudfront.net/uploads/user/image_file/10087/thumb_Honeycam_2015-12-07_18-58-43.gif">
+                            </a>      
+                            <strong>
+                              <a href="https://haemukja.com/profile/10087" target="_blank">마틸다</a>
+                            </strong>
+                        </span>
+                <p class="recipe_content">
+                    <a class="call_recipe thmb" href="../recipe_detail/korea/5482.html">
+                                  한끼 든든! 항정살 덮밥
+                                  <br>
+                                    <strong>항정살 덮밥</strong>
+                </a>
+                </p>
+            </li>
+            <!--[S] li(아이템 리스트)-->
+            <li>
+                <a class="call_recipe thmb" href="../recipe_detail/korea/5514.html">
+                          <img class="recipe_img" src="https://cloudfront.haemukja.com/vh.php?url=https://d1hk7gw6lgygff.cloudfront.net/uploads/direction/image_file/64054/mid_thumb_______1.jpg&convert=jpgmin&rt=600" >
+                        </a>
+                <span class="author">
+                          <a href="https://haemukja.com/profile/10087" target="_blank">
+                            <img alt="요상한 주걱" class="author_img" src="https://cloudfront.haemukja.com/vh.php?url=https://d1hk7gw6lgygff.cloudfront.net/uploads/user/image_file/209056/thumb_profile_aeri.jpg&convert=jpgmin&rt=600">
+                            </a>      
+                            <strong>
+                              <a href="https://haemukja.com/profile/10087" target="_blank">앨샘</a>
+                            </strong>
+                        </span>
+                <p class="recipe_content">
+                    <a class="call_recipe thmb" href="../recipe_detail/korea/5514.html">
+                                  달콤한 연근조림
+                                  <br>
+                                    <strong>연근조림</strong>
+                </a>
+                </p>
+            </li>
+            <!--[E] li(아이템 리스트)-->
+        </div>
+        <!--[E] li(아이템 리스트)-->
+        <div class="li-row">
+            <!--[S] li(아이템 리스트)-->
+            <li>
+                <a class="call_recipe thmb" href="../recipe_detail/korea/5479.html">
+                          <img class="recipe_img" src="https://cloudfront.haemukja.com/vh.php?url=https://d1hk7gw6lgygff.cloudfront.net/uploads/direction/image_file/63724/mid_thumb______.jpg&convert=jpgmin&rt=600" >
+                        </a>
+                <span class="author">
+                          <a href="https://haemukja.com/profile/10087" target="_blank">
+                            <img alt="요상한 주걱" class="author_img" src="https://cloudfront.haemukja.com/vh.php?url=https://d1hk7gw6lgygff.cloudfront.net/uploads/user/image_file/193762/thumb_cdv_photo_001.jpg&convert=jpgmin&rt=600">
+                            </a>      
+                            <strong>
+                              <a href="https://haemukja.com/profile/193762" target="_blank">이맥남</a>
+                            </strong>
+                        </span>
+                <p class="recipe_content">
+                    <a class="call_recipe thmb" href="../recipe_detail/korea/5479.html">
+                                색다른 만두 ! 매콤 만두교자 
+                                  <br>
+                                    <strong>매콤한 만두교자</strong>
+                </a>
+                </p>
+            </li>
+            <!--[E] li(아이템 리스트)-->
+            <!--[S] li(아이템 리스트)-->
+            <li>
+                <a class="call_recipe thmb" href="../recipe_detail/korea/5494.html">
+                          <img class="recipe_img" src="https://cloudfront.haemukja.com/vh.php?url=https://d1hk7gw6lgygff.cloudfront.net/uploads/recipe/image_file/5494/mid_thumb_______2.jpg&convert=jpgmin&rt=600" >
+                        </a>
+                <span class="author">
+                          <a href="https://haemukja.com/profile/10087" target="_blank">
+                            <img alt="요상한 주걱" class="author_img" src="https://cloudfront.haemukja.com/vh.php?url=https://d1hk7gw6lgygff.cloudfront.net/uploads/user/image_file/18138/thumb_0______1.5_profile.png&convert=jpgmin&rt=600">
+                            </a>      
+                            <strong>
+                              <a href="https://haemukja.com/profile/10087" target="_blank">해먹남녀</a>
+                            </strong>
+                        </span>
+                <p class="recipe_content">
+                    <a class="call_recipe thmb" href="../recipe_detail/korea/5494.html">
+                                  포장마차 스페셜 레시피
+                                  <br>
+                                    <strong>엄지네꼬막</strong>
+                </a>
+                </p>
+            </li>
+            <!--[E] li(아이템 리스트)-->
+            <!--[S] li(아이템 리스트)-->
+            <li>
+                <a class="call_recipe thmb" href="../recipe_detail/korea/5452.html">
+                          <img class="recipe_img" src="https://cloudfront.haemukja.com/vh.php?url=https://d1hk7gw6lgygff.cloudfront.net/uploads/recipe/image_file/5463/mid_thumb_2359______2.jpg&convert=jpgmin&rt=600" >
+                        </a>
+                <span class="author">
+                          <a href="https://haemukja.com/profile/10087" target="_blank">
+                            <img alt="요상한 주걱" class="author_img" src="https://cloudfront.haemukja.com/vh.php?url=https://d1hk7gw6lgygff.cloudfront.net/uploads/user/image_file/1410363/thumb_profile1518079709244.jpg&convert=jpgmin&rt=600">
+                            </a>      
+                            <strong>
+                              <a href="https://haemukja.com/profile/10087" target="_blank">2359</a>
+                            </strong>
+                        </span>
+                <p class="recipe_content">
+                    <a class="call_recipe thmb" href="../recipe_detail/korea/5452.html">
+                                하루1분, 행복을 제안하는 요리시간
+                                  <br>
+                                    <strong>이십삼시 오십구분 : 손칼국수</strong>
+                </a>
+                </p>
+            </li>
+            <!--[E] li(아이템 리스트)-->
+            <!--[S] li(아이템 리스트)-->
+            <li>
+                <a class="call_recipe thmb" href="../recipe_detail/korea/5382.html">
+                          <img class="recipe_img" src="https://cloudfront.haemukja.com/vh.php?url=https://d1hk7gw6lgygff.cloudfront.net/uploads/direction/image_file/62898/mid_thumb______.jpg&convert=jpgmin&rt=600" >
+                        </a>
+                <span class="author">
+                          <a href="https://haemukja.com/profile/10087" target="_blank">
+                            <img alt="요상한 주걱" class="author_img" src="https://cloudfront.haemukja.com/vh.php?url=https://d1hk7gw6lgygff.cloudfront.net/uploads/user/image_file/193762/thumb_cdv_photo_001.jpg&convert=jpgmin&rt=600">
+                            </a>      
+                            <strong>
+                              <a href="https://haemukja.com/profile/10087" target="_blank">이맥남</a>
+                            </strong>
+                        </span>
+                <p class="recipe_content">
+                    <a class="call_recipe thmb" href="../recipe_detail/korea/5382.html">
+                              화제의 동화 같은 스페인에서 팔고 있는 그 비빔밥! 윤식당
+                                  <br>
+                                    <strong>윤식당 간장비빔밥</strong>
+                </a>
+                </p>
+            </li>
+            <!--[E] li(아이템 리스트)-->
+        </div>
+        <!--[E]li-row 4칸마다 해줘야함 반응형 적용 x-->
+    </ul>
+    <!--[E]ul-->
+    <div class="btn-div">
+        <input type="button" id="btn-recipe_enroll" value="레시피 만들기" "></div>
+
+</body>
+
+</html>

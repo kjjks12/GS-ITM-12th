@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
+</head>
+<script type="text/javascript">
+$(document).ready(function() {
+    console.log($.addComma('123123123'));
+    //$("ul li").redColor().eq(2).css('border','1px solid blue');
+    //$("ul li").removeLi();
+});
+
+//함수처럼 보이지만 jQuery 유틸리티 
+(function() {
+    $.addComma = (function(value) {
+        //1.숫자를 문자로 변환
+        var data = value + '';
+        //2.문자열을 배열로 만들기
+        var arrayResult = data.split('');
+
+        var statIndex = arrayResult.length - 3;
+        for (var i = statIndex; i > 0; i -= 3) {
+            arrayResult.splice(i, 0, ',');
+        }
+        return arrayResult.join('');
+    });
+
+    $.fn.redColor = function() {
+        this.each(function(index) {
+            $(this).css('border', '1px solid red');
+        });
+        return this;
+    };
+
+    $.fn.removeLi = function() {
+        this.each(function(index) {
+            $(this).delay(index * 1000).animate({
+                    height: 0
+                },
+                500,
+                function() {
+                    $(this).remove();
+            });
+        });
+    };
+
+
+})(jQuery);
+</script>
+
+<body>
+    <ul>
+        <li>1번째 노드</li>
+        <li>2번째 노드</li>
+        <li>3번째 노드</li>
+        <li>4번째 노드</li>
+        <li>5번째 노드</li>
+        <li>6번째 노드</li>
+    </ul>
+</body>
+
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>인성들에 관하여</title>
+    <style>
+    #spreaddivs {
+        border: 1px solid black;
+    }
+    </style>
+    <script src="../libs/jquery-1.11.0.min.js"></script>
+    <script src="./spreadiv.js"></script>
+    <script>
+    $(document).ready(function() {
+        $('#spreaddivs').spreadPannel({
+            plusid: "#plus",
+            minusid: "#minus",
+        });
+    });
+    </script>
+</head>
+
+<body>
+    <button id="plus">+</button>
+    <button id="minus">-</button>
+    <div id="spreaddivs">이인성 짱입니다.</div>
+</body>
+
+</html>

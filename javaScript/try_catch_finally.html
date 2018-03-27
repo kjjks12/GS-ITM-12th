@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+</head>
+<script type="text/javascript">
+function getMonthName(mo) {
+    mo = mo - 1;
+    var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+    if (months[mo] != null) {
+        return months[mo];
+    } else {
+        throw "invalidMonthNo";
+    }
+}
+
+try {
+
+    monthName = getMonthName(-1);
+} catch (e) {
+    monthName = "unKnown";
+    console.log(e); //invalidMonthNO가 찍힘 
+} finally {
+    console.log('완료');
+}
+</script>
+
+<body>
+</body>
+
+</html>>

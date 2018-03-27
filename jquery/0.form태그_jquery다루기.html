@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title></title>
+  <style>
+  </style>
+  <script src="libs/jquery-1.11.0.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      $('button').on('click', function(event) {
+        var $this = $(this);
+        switch($this.attr('id')) {
+          case 'txtRead':
+            fn_txtRead();
+            break;
+          case 'txtWrite':
+            fn_txtWrite();
+            break;
+          case 'rdoCheck':
+            fn_rdoCheck();
+            break;
+          case 'rdoRead':
+            fn_rdoRead();
+            break;
+          case 'rdoCheckOther':
+            fn_rdoCheckOther();
+            break;
+          case 'selectCheck':
+            fn_selectCheck();
+            break;
+          case 'selectRead':
+            fn_selectRead();
+            break;
+          case 'selectIndex':
+            fn_selectIndex();
+            break;
+          case 'selectMove':
+            fn_selectMove();
+            break;
+          case 'chkCheck':
+            fn_chkCheck();
+            break;
+          case 'chkAll':
+            fn_chkAll();
+            break;
+          case 'chkAllf':
+            fn_chkAllf();
+            break;
+          case 'chkRead':
+            fn_chkRead();
+            break;
+          case 'tareaRead':
+            fn_tareaRead();
+            break;
+          case 'tareaWrite':
+            fn_tareaWrite();
+            break;
+        }
+      });
+    });
+
+    function fn_txtRead() {
+      console.log('textbox : ' + $('#txt').val());
+    }
+    function fn_txtWrite() {
+      $('#txt').val($('#txtWrite').text());
+    }
+    function fn_rdoCheck() {
+      if ($('[name="rdo"]:checked').val() === undefined) {
+        console.log('radio : ' + '선택되지 않았습니다.');
+      } else {
+        console.log('radio : ' + '선택되었습니다.');
+      }
+    }
+    function fn_rdoRead() {
+      console.log($('[name="rdo"]:checked').val());
+    }
+    function fn_rdoCheckOther() {
+      if ($('[name="rdo"]').eq(0).is(':checked')) {
+        $('[name="rdo"]').eq(1).prop('checked',true);
+      } else {
+        $('[name="rdo"]').eq(0).prop('checked',true);
+      }
+    }
+    function fn_selectCheck() {
+      if ($('#selectbox option:selected').val() == '') {
+        console.log('select : ' + '선택되지 않았습니다.');
+      } else {
+        console.log('select : ' + '선택되었습니다.');
+      }
+    }
+    function fn_selectRead() {
+      var $this = $('#selectbox option:selected');
+      console.log('select value : ' + $this.val());
+      console.log('select text : ' +  $this.text());
+    }
+    function fn_selectIndex() {
+      console.log('select index : ' + $('#selectbox option').index($('#selectbox option:selected')));
+    }
+    function fn_selectMove(_obj) {
+      $('#selectbox').val('s2');
+    }
+    function fn_chkCheck(_obj) {
+      if($('input:checkbox[name="chk"]:checked').length == 0) {
+        console.log('checkbox : ' + '선택되지 않았습니다.');
+      } else {
+        console.log('checkbox : ' + '선택되었습니다.');
+      }
+    }
+    function fn_chkAll(_obj) {
+      $('input:checkbox[name="chk"]').each(function() {
+        $(this).prop('checked', true);
+      });
+    }
+    function fn_chkAllf(_obj) {
+      $('input:checkbox[name="chk"]').each(function() {
+        $(this).prop('checked', false);
+      });
+    }
+    function fn_chkRead(_obj) {
+      var result = '';
+      $('input:checkbox[name="chk"]:checked').each(function() {
+        result += ((result == '' ? '' : ',') + $(this).val());
+      });
+      console.log('checkbox 선택된 value : ' + result);
+    }
+    function fn_tareaRead(_obj) {
+      console.log('textarea : ' + $('#tarea').val());
+    }
+    function fn_tareaWrite(_obj) {
+      $('#tarea').val($('#tareaWrite').text());
+    }
+  </script>
+</head>
+<body>
+  <input type="text" id="txt" />
+  <br>
+  <button id="txtRead">텍스트박스 글 읽기</button>
+  <button id="txtWrite">텍스트박스 글 쓰기(버튼명으로)</button>
+  <br><br>
+  <input type="radio" name="rdo" value="1" />1
+  <input type="radio" name="rdo" value="2" />2
+  <br>
+  <button id="rdoCheck">체크 확인</button>
+  <button id="rdoRead">체크된 값 읽기</button>
+  <button id="rdoCheckOther">다른 녀석으로 체크하기</button>
+  <br><br>
+  <select id="selectbox">
+    <option value="">==선택하세요==</option>
+    <option value="001">운동</option>
+    <option value="s2">s2Text</option>
+    <option value="s3">s3Text</option>
+    <option value="s4">s4Text</option>
+  </select>
+  <br>
+  <button id="selectCheck">선택확인</button>
+  <button id="selectRead">체크된 값(Text) 읽기</button>
+  <button id="selectIndex">선택된 Index</button>
+  <button id="selectMove">==선택==으로 이동</button>
+  <br><br>
+  <input type="checkbox" name="chk" value="c1" />c1
+  <input type="checkbox" name="chk" value="c2" />c2
+  <input type="checkbox" name="chk" value="c3" />c3
+  <input type="checkbox" name="chk" value="c4" />c4
+  <br>
+  <button id="chkCheck">체크확인</button>
+  <button id="chkAll">전체 선택하기</button>
+  <button id="chkAllf">전체 선택해제하기</button>
+  <button id="chkRead">선택된 값 읽기</button>
+  <br><br>
+  <textarea id="tarea"></textarea><br>
+  <button id="tareaRead">텍스트area 글 읽기</button>
+  <button id="tareaWrite">텍스트area 글 쓰기(버튼명으로)</button>
+</body>
+</html>

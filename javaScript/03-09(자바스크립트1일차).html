@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+    <script type="text/javascript">
+    var name = '정광수';
+    var age = 44;
+    var isMarried = true;
+    console.log(name);
+    console.log(age);
+    console.log(isMarried);
+
+    var arrlist = ['gsitm', '인턴', 'SI개발 기초', 50];
+    console.log(arrlist[0]);
+    console.log(arrlist[1]);
+    console.log(arrlist[2]);
+    console.log(arrlist[3]);
+
+    for (var i = 0; i < arrlist.length; i++) {
+        console.log(arrlist[i]);
+    }
+    var glovVar = '전역변수';
+
+    function test() {
+        console.log(glovVar);
+        var localVar = 'test';
+    }
+    //console.log(localVar);/*지역 변수라 찾지 못함*/
+
+    var a = 10;
+    console.log(a--);
+    a = 10;
+    console.log(--a)
+
+    function calc() {
+        this.add = function(a, b) {
+            alert("두수의 합은" + (a + b) + "입니다");
+        }
+        this.sub = function(a, b) {
+            alert("두수의 차는" + (a - b) + "입니다");
+        }
+        this.mul = function(a, b) {
+            alert("두수의 곱은" + (a * b) + "입니다");
+        }
+        this.div = function(a, b) {
+            alert("두수의 나눈값은" + (a / b) + "입니다");
+        }
+
+    }
+    var cal1 = new calc();
+    //cal1.add(10,20);
+    //cal1.sub(10,20);
+    //cal1.mul(10,20);
+    //cal1.div(10,20);
+
+    var num = 123.456;
+    console.log(parseInt(num));
+    console.log(parseFloat(num));
+    console.log(Number(num));
+    console.log(num.toFixed(2));
+
+    // var value = window.prompt('로도뻔호를 입력하세요');
+
+    /*  if(value=='99'){
+          alert('축 담청 돈가져 가세요');
+      }else{
+          alert('다음기회에...');  ㅜ 
+      }*/
+
+    /*
+        var result=(value==99)?'당첨':'실패';
+        alert(result);
+    */
+
+    for (var i = 1; i <= 5; i++) {
+        for (var j = 1; j <= i; j++) {
+            window.document.write('*');
+        }
+        window.document.write('<br/>');
+    }
+    window.document.write('<br/>');
+
+    for (var i = 5; i >= 1; i--) {
+        for (var j = i; j >= 1; j--) {
+            window.document.write('*');
+        }
+        window.document.write('<br/>');
+    }
+    window.document.write('<br/>');
+
+    for (var i = 2; i <= 9; i++) {
+        for (var j = 1; j <= 9; j++) {
+            window.document.write(i + '*' + j + '=' + i * j + '<br/>');
+        }
+        window.document.write('<br/>');
+    }
+
+    var arr = [10, 20, 30, 40, 50];
+    var result = 0;
+    for (var i = 0; i < arr.length; i++) {
+        result += arr[i];
+    }
+    window.document.write(result);
+
+    window.document.write('<br/>');
+
+    var result2 = 0;
+    for (var i = 1; i <= 100; i++) {
+        result2 += i;
+    }
+    window.document.write(result2);
+
+    window.document.write('<br/>');
+    var i = 1;
+    while (i != 10) {
+        var dan = 3;
+        window.document.write(dan + '*' + i + '=' + (dan * i++) + '<br>');
+    }
+
+    var i = 1;
+    while (true) {
+        var value = window.prompt((i++) + '번째 입력');
+        if (value == 'end') {
+            break;
+        }
+    }
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>

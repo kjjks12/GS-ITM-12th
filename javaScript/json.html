@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<script type="text/javascript">
+	var jsons={
+		"first":"jane",
+		"last":"Porter",
+		"married":true,
+		"born":1890,
+		"friends":["Trazan","Ceeta"]
+	}
+
+	console.log(jsons);
+
+function relacer(key,value){
+	if(typeof value ==='number'){
+		value= 2*value;
+	}
+	return value;
+}
+console.log(JSON.stringify({foo:1,bar:[2,8]},relacer));//json =>문자열로 변환
+console.log(JSON.parse(''));
+
+</script>
+<body>
+
+</body>
+</html>

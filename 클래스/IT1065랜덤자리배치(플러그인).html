@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        랜덤 자리 배치 만들기
+    </title>
+    <style type="text/css">
+    table {
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    th {
+        font-weight: bold;
+        font-size: 20px;
+        text-align: center;
+    }
+
+    td {
+        font-size: 20px;
+        font-weight: bold;
+        height: 40px;
+        padding: 5px;
+        vertical-align: middle;
+        border: 1px solid #ccc;
+        text-align: center;
+    }
+
+    tfoot>tr>td {
+        text-align: center;
+    }
+
+    .woman_div {
+        background-color: #ffff99;
+    }
+
+    .screen_td {
+        background-color: #ffcc99;
+    }
+
+    .hole_td {
+        background-color: #ffcc99;
+    }
+    </style>
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function() {
+
+
+        var womanArr = new Array(
+            '김윤지', '최영롱', '고하윤', '채유진', '조은솔', '이경화', '강혜정', '박보미', '박소현', '김수진', '진민영', '박민주', '유희수'
+        );
+        var manArr = new Array(
+            '손혜성', '이경민', '송현석', '김종주', '김동범', '노종법', '남동길', '최규호', '김진우', '성동원', '우연찬', '최준우', '정광수',
+            '김효상', '이인성', '허빛찬샘', '신종욱', '은종현', '김민재', '이창주', '김준혁', '조현우', '이종건', '손원락', '임혜성',
+            '조국', '위재원', '장진영', '백기반', '김주승', '오병준', '차주현', '장동주', '정진', '이융성', '이인성', '주형진'
+
+        );
+        var isVistedArr = new Array(51);
+        $(".seatTable").setTable();
+        /*        setDownWoman();
+                setDownMan();
+
+
+                function setDownWoman() {
+                    var seatNum = 0;
+                    var row = 0;
+                    while (womanArr.length > 0) {
+                        var num = Math.floor(Math.random() * womanArr.length);
+                        //배열에서 원소 제거
+                        var name = womanArr.splice(num, 1);
+                        seatNum = (Math.floor(Math.random() * 4) + 1) + row;
+                        row += 4;
+                        if (seatNum > 48) {
+                            seatNum = 48 + Math.floor(Math.random() * 2) + 1;
+                        }
+                        isVistedArr[seatNum] = 1;
+                        $womantd = $("#" + seatNum);
+                        $womantd.text(name);
+                        $womantd.addClass('woman_div');
+
+                    }
+                }*/ //여자 앉히기
+
+        /*      function setDownMan() {
+            var seatNum = 0;
+
+            while (manArr.length > 0) {
+                var num = Math.floor(Math.random() * manArr.length);
+                var name = manArr.splice(num, 1);
+                while (1) {
+                    seatNum = (Math.floor(Math.random() * 50) + 1);
+                    if (isVistedArr[seatNum] != 1) {
+                        break;
+                    }
+                }
+                isVistedArr[seatNum] = 1;
+                $("#" + seatNum).text(name);
+                // document.getElementById(seatNum).innerText = name;
+            }
+        }
+*/
+    }); //jQeury end
+    (function($) {
+
+        function seatTable(womanArr, manArr, isVistedArr) {
+            this.table = $(this);
+            this.womanArr = womanArr;
+            this.manArr = manArr;
+            this.isVistedArr = isVistedArr;
+            this.seatUser();
+        }
+        seatTable.prototype.seatUser = function() {
+            //var table = this.table;
+            var seatNum = 0;
+            var row = 0;
+            var womanArr = this.womanArr;
+            while (womanArr.length > 0) {
+                var num = Math.floor(Math.random() * womanArr.length);
+                //배열에서 원소 제거
+                var name = womanArr.splice(num, 1);
+                seatNum = (Math.floor(Math.random() * 4) + 1) + row;
+                row += 4;
+                if (seatNum > 48) {
+                    seatNum = 48 + Math.floor(Math.random() * 2) + 1;
+                }
+                this.isVistedArr[seatNum] = 1;
+
+               /* $.each(this.table,function(index) {
+                    var trs=this;
+                    $.each(trs,function(index){
+                        var td=trs.find("td[id='"+seatNum+"']");
+                    })
+                });*/
+                 $womantd= this.table.find("td[id='"+seatNum+"']");
+                //$womantd = this.table("#" + seatNum);
+                $womantd.text(name);
+                $womantd.addClass('woman_div');
+            }
+
+        }
+
+   /*     function setDownMan($table) {
+            var seatNum = 0;
+
+            while (manArr.length > 0) {
+                var num = Math.floor(Math.random() * manArr.length);
+                var name = manArr.splice(num, 1);
+                while (1) {
+                    seatNum = (Math.floor(Math.random() * 50) + 1);
+                    if (isVistedArr[seatNum] != 1) {
+                        break;
+                    }
+                }
+                isVistedArr[seatNum] = 1;
+                $table("#" + seatNum).text(name);
+                // document.getElementById(seatNum).innerText = name;
+            }
+        }
+*/
+        /*        function setDownWoman($table) {
+                    var seatNum = 0;
+                    var row = 0;
+                    while (womanArr.length > 0) {
+                        var num = Math.floor(Math.random() * womanArr.length);
+                        //배열에서 원소 제거
+                        var name = womanArr.splice(num, 1);
+                        seatNum = (Math.floor(Math.random() * 4) + 1) + row;
+                        row += 4;
+                        if (seatNum > 48) {
+                            seatNum = 48 + Math.floor(Math.random() * 2) + 1;
+                        }
+                        isVistedArr[seatNum] = 1;
+                        $womantd = $table("#" + seatNum);
+                        $womantd.text(name);
+                        $womantd.addClass('woman_div');
+
+                    }
+                } //여자 앉히기
+        */
+        $.fn.setTable = function() {
+            var womanArr = new Array(
+                '김윤지', '최영롱', '고하윤', '채유진', '조은솔', '이경화', '강혜정', '박보미', '박소현', '김수진', '진민영', '박민주', '유희수'
+            );
+            var manArr = new Array(
+                '손혜성', '이경민', '송현석', '김종주', '김동범', '노종법', '남동길', '최규호', '김진우', '성동원', '우연찬', '최준우', '정광수',
+                '김효상', '이인성', '허빛찬샘', '신종욱', '은종현', '김민재', '이창주', '김준혁', '조현우', '이종건', '손원락', '임혜성',
+                '조국', '위재원', '장진영', '백기반', '김주승', '오병준', '차주현', '장동주', '정진', '이융성', '이인성', '주형진'
+
+            );
+            var isVistedArr = new Array(51);
+
+            var table = new seatTable(womanArr, manArr, isVistedArr);
+            return this;
+        }
+
+    })(jQuery)
+    </script>
+</head>
+
+<body>
+    <table class="seatTable">
+        <tr>
+            <td colspan="9" class="screen_td">
+                스크린
+            </td>
+        </tr>
+        <tr>
+            <td id="1">1</td>
+            <td id="2">2</td>
+            <td id="3">3</td>
+            <td id="4">4</td>
+            <td rowspan="8" class="hole_td">통로</td>
+            <td id="5">5</td>
+            <td id="6">6</td>
+            <td id="7">7</td>
+            <td id="8">8</td>
+        </tr>
+        <tr>
+            <td id="9">9</td>
+            <td id="10">10</td>
+            <td id="11">11</td>
+            <td id="12">12</td>
+            <td id="13">13</td>
+            <td id="14">14</td>
+            <td id="15">15</td>
+            <td id="16">16</td>
+        </tr>
+        <tr>
+            <td id="17">17</td>
+            <td id="18">18</td>
+            <td id="19">19</td>
+            <td id="20">20</td>
+            <td id="21">21</td>
+            <td id="22">22</td>
+            <td id="23">23</td>
+            <td id="24">24</td>
+        </tr>
+        <tr>
+            <td id="25">25</td>
+            <td id="26">26</td>
+            <td id="27">27</td>
+            <td id="28">28</td>
+            <td id="29">29</td>
+            <td id="30">30</td>
+            <td id="31">31</td>
+            <td id="32">32</td>
+        </tr>
+        <tr>
+            <td id="33">33</td>
+            <td id="34">34</td>
+            <td id="35">35</td>
+            <td id="36">36</td>
+            <td id="37">37</td>
+            <td id="38">38</td>
+            <td id="39">39</td>
+            <td id="40">40</td>
+        </tr>
+        <tr>
+            <td id="41">41</td>
+            <td id="42">42</td>
+            <td id="43">43</td>
+            <td id="44">44</td>
+            <td id="45">45</td>
+            <td id="46">46</td>
+            <td id="47">47</td>
+            <td id="48">48</td>
+        </tr>
+        <tr>
+            <td colspan="4"></td>
+            <td id="49">49</td>
+            <td id="50">50</td>
+            <td colspan="2"></td>
+        </tr>
+    </table>
+</body>
+
+</html>

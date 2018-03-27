@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+</head>
+<script src="../libs/jquery-1.11.0.min.js"></script>
+<style>
+
+#parent1 {
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    left: 100px;
+    top: 100px;
+    background-color: gray;
+}
+
+#parent2 {
+    margin: 50px;
+    width: 200px;
+    height: 200px;
+    background-color: yellow;
+}
+
+#child {
+
+    left:50px;
+    top:100px;
+    width: 100px;
+    height: 100px;
+    background-color: red;
+}
+</style>
+<script>
+/*
+자식이 absolute면  자신의 부모들 중에 absolute인 애들에게 적용 
+*/
+
+</script>
+
+<body>
+    <div id="parent1">
+        <div id="parent2">
+            <div id="child"></div>
+        </div>
+    </div>
+</body>
+
+</html>
